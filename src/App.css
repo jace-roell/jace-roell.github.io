@@ -1,0 +1,175 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.app {
+  background-color: #333;
+  color: #fff;
+}
+
+.welcome {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #111;
+  position: relative;
+}
+
+.tabs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  z-index: 100;
+}
+
+.tab {
+  margin-left: 10px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.tab:hover {
+  background-color: #555;
+}
+
+.tab.active {
+  background: linear-gradient(90deg, red, blue);
+}
+.content-section {
+  min-height: 500vh; /* may need adjusted */
+  padding: 50px 0; /* may need adjusted */
+}
+
+
+#education {
+  background-color: #444;
+}
+
+#experience {
+  background-color: #555;
+}
+
+#projects {
+  background-color: #666;
+}
+
+#skills {
+  background-color: #777;
+}
+
+#contacts {
+  background-color: #888;
+}
+.trail {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, blue, red);
+  animation: trailFade 1s ease-out;
+  transform-origin: center;
+}
+
+@keyframes trailFade {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+.welcome-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome {
+  height: 100vh;
+  display: flex;
+  flex-direction: column; /* Updated to vertical direction */
+  align-items: center;
+  justify-content: center;
+  background-color: #111;
+  position: relative;
+}
+
+.view-portfolio-btn {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column; /* Align text and arrow vertically */
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(90deg, blue, red);
+  color: #fff;
+  transition: background-color 0.3s, transform 0.3s; /* Add transition for a smooth effect */
+}
+
+.view-portfolio-btn:hover {
+  background-color: #555; /* Adjust the button background color on hover */
+  transform: translateY(-5px); /* Adjust the vertical movement on hover */
+}
+
+.view-portfolio-btn svg {
+  margin-top: 5px; /* Adjust the margin between text and arrow */
+}
+
+.trail {
+  position: absolute;
+  width: 10px; /* Adjust the trail width as needed */
+  height: 10px; /* Adjust the trail height as needed */
+  background-color: #ff0000; /* Trail color */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.trail-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.star {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+@keyframes moveStar {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(50vw, 50vh);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
