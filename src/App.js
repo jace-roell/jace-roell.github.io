@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import styled, { keyframes } from 'styled-components';
+import StarryBackground from './starryBackground';
 import { FaGraduationCap, FaBriefcase, FaCode, FaTools, FaEnvelope, FaArrowDown } from "react-icons/fa";
 const TabLink = ({ sectionId, currentSection, scrollToSection, children }) => {
   const isActive = currentSection === sectionId;
@@ -22,82 +22,7 @@ const SectionHeader = ({ icon, title }) => (
     <h2>{title}</h2>
   </div>
 );
-const floatStar = keyframes`
-  0% {
-    transform: translateY(0) translateX(0);
-    box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
-  }
-  50% {
-    transform: translateY(-20px) translateX(10px);
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
-  }
-  100% {
-    transform: translateY(0) translateX(0);
-    box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
-  }
-`;
 
-const generateRandomColor = () => {
-  const isBlue = Math.random() < 0.5;
-  return isBlue ? 'rgba(0, 0, 255, 0.8)' : 'rgba(255, 0, 0, 0.8)';
-};
-
-const Star = styled.div`
-  position: absolute;
-  width: ${({ size }) => `${size}px`};
-  height: ${({ size }) => `${size}px`};
-  background-color: ${({ color }) => color};
-  border-radius: 50%;
-  animation: ${floatStar} ${({ duration }) => `${duration}s`} infinite ease-in-out;
-  top: ${({ top }) => `${top}%`};
-  left: ${({ left }) => `${left}%`};
-  filter: brightness(${({ brightness }) => brightness});
-`;
-const StarsContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-`;
-
-
-const Stars = () => {
-  const [stars, setStars] = useState([]);
-
-  useEffect(() => {
-    createStars();
-  }, []); // Empty dependency array ensures the effect runs once on mount
-
-  const createStars = () => {
-    const newStars = Array.from({ length: 5 }, (_, index) => {
-      const size = Math.random() * 2 + 1; // Varying sizes between 1 and 3
-      const duration = Math.random() * 5 + 5;
-      const top = Math.random() * 100;
-      const left = Math.random() * 100;
-      const color = generateRandomColor();
-      const brightness = Math.random() * 0.5 + 0.5; // Varying brightness between 0.5 and 1
-
-      return (
-        <Star
-          key={index}
-          size={size}
-          duration={duration}
-          top={top}
-          left={left}
-          color={color}
-          brightness={brightness}
-        />
-      );
-    });
-
-    setStars(newStars);
-  };
-
-  return <>{stars}</>;
-};
 const BulletPoints = ({ points }) => (
   <ul className="bullet-points">
     {points.map((point, index) => (
@@ -148,22 +73,16 @@ const App = () => {
 
   return (
     <div className="app">
+      
       <div className="welcome-container">
-        <div className="welcome" onMouseMove={(e) => createTrail(e.clientX, e.clientY)}>
-        <h1>
-            Hello, my name is Jace Roell.{" "}
-            <a href="/blackjack.html" target="_blank" rel="noopener noreferrer">
-              View Blackjack
-            </a>
-          </h1>
-          <button className="view-portfolio-btn" onClick={() => scrollToSection("education")}>
-            View My Portfolio <FaArrowDown />
-          </button>
-        </div>
-        <StarsContainer>
-          <Stars />
-        </StarsContainer>
+      <StarryBackground />
+      <div className="welcome">
+        <h1>Hello, my name is Jace Roell</h1>
+        <button className="view-portfolio-btn" onClick={() => scrollToSection("education")}>
+          View My Portfolio <FaArrowDown />
+        </button>
       </div>
+    </div>
 
       <div className="tabs">
         <TabLink
@@ -267,7 +186,9 @@ const App = () => {
       </section>
       <section id="projects" className="content-section">
         <SectionHeader icon={<FaCode />} title="Projects" />
-        {/* Add your content for the Projects section here */}
+        {            <a href="/blackjack.html" target="_blank" rel="noopener noreferrer">
+              View Blackjack
+            </a>}
       </section>
 
       <section id="skills" className="content-section">

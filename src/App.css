@@ -4,7 +4,7 @@ body {
 }
 
 .app {
-  background-color: #333;
+  background-color: transparent;
   color: #fff;
 }
 
@@ -92,22 +92,23 @@ body {
 .welcome-container {
   position: relative;
   overflow: hidden;
+  background-color: transparent;
 }
 
 .welcome {
   height: 100vh;
   display: flex;
-  flex-direction: column; /* Updated to vertical direction */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #111;
   position: relative;
+  background-color: transparent;
 }
 
 .view-portfolio-btn {
   margin-top: 20px;
   display: flex;
-  flex-direction: column; /* Align text and arrow vertically */
+  flex-direction: column;
   align-items: center;
   cursor: pointer;
   padding: 10px;
@@ -115,23 +116,23 @@ body {
   border-radius: 5px;
   background: linear-gradient(90deg, blue, red);
   color: #fff;
-  transition: background-color 0.3s, transform 0.3s; /* Add transition for a smooth effect */
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .view-portfolio-btn:hover {
-  background-color: #555; /* Adjust the button background color on hover */
-  transform: translateY(-5px); /* Adjust the vertical movement on hover */
+  background-color: #555;
+  transform: translateY(-5px);
 }
 
 .view-portfolio-btn svg {
-  margin-top: 5px; /* Adjust the margin between text and arrow */
+  margin-top: 5px;
 }
 
 .trail {
   position: absolute;
-  width: 10px; /* Adjust the trail width as needed */
-  height: 10px; /* Adjust the trail height as needed */
-  background-color: #ff0000; /* Trail color */
+  width: 10px;
+  height: 10px;
+  background-color: #ff0000;
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
@@ -146,30 +147,10 @@ body {
   pointer-events: none;
   z-index: 0;
 }
-.star {
-  position: absolute;
-  background-color: #fff;
-  border-radius: 50%;
-}
-
-@keyframes moveStar {
-  0% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(50vw, 50vh);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-.stars-container {
+canvas {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
   z-index: -1;
+  pointer-events: none;
 }
