@@ -150,7 +150,12 @@ const App = () => {
     <div className="app">
       <div className="welcome-container">
         <div className="welcome" onMouseMove={(e) => createTrail(e.clientX, e.clientY)}>
-          <h1>Hello, my name is Jace Roell</h1>
+        <h1>
+            Hello, my name is Jace Roell.{" "}
+            <a href="/blackjack.html" target="_blank" rel="noopener noreferrer">
+              View Blackjack
+            </a>
+          </h1>
           <button className="view-portfolio-btn" onClick={() => scrollToSection("education")}>
             View My Portfolio <FaArrowDown />
           </button>
