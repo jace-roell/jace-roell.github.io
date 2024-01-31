@@ -13,7 +13,7 @@ const StarryBackground = () => {
     canvas.height = window.innerHeight;
 
     const stars = [];
-    const FPS = 5;
+    const FPS = 60;
 
     for (let i = 0; i < canvas.width; i++) {
       stars.push({
@@ -32,7 +32,7 @@ const StarryBackground = () => {
       for (let i = 0, x = stars.length; i < x; i++) {
         const s = stars[i];
 
-        ctx.fillStyle = Math.random() > 0.5 ? '#424bad' : '#ad4242'
+        ctx.fillStyle = Math.random() > 0.5 ? '#424bad' : '#cc3131'
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.radius, 0, 2 * Math.PI);
         ctx.fill();

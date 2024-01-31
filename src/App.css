@@ -13,7 +13,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #111;
+  background-color: transparent;
   position: relative;
 }
 
@@ -42,7 +42,7 @@ body {
 }
 
 .tab.active {
-  background: linear-gradient(90deg, red, blue);
+  background: linear-gradient(90deg, #424bad,#cc3131);
 }
 .content-section {
   min-height: 500vh; /* may need adjusted */
@@ -51,32 +51,24 @@ body {
 
 
 #education {
-  background-color: #444;
+  background-color: transparent;
+  min-height: 50vh !important; 
 }
 
 #experience {
-  background-color: #555;
+  background-color: transparent;
 }
 
 #projects {
-  background-color: #666;
+  background-color: transparent;
 }
 
 #skills {
-  background-color: #777;
+  background-color: transparent;
 }
 
 #contacts {
-  background-color: #888;
-}
-.trail {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: linear-gradient(90deg, blue, red);
-  animation: trailFade 1s ease-out;
-  transform-origin: center;
+  background-color: transparent;
 }
 
 @keyframes trailFade {
@@ -114,7 +106,7 @@ body {
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background: linear-gradient(90deg, blue, red);
+  background: linear-gradient(90deg, #424bad,#cc3131);
   color: #fff;
   transition: background-color 0.3s, transform 0.3s;
 }
@@ -128,25 +120,6 @@ body {
   margin-top: 5px;
 }
 
-.trail {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: #ff0000;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.trail-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 0;
-}
 canvas {
   position: fixed;
   top: 0;
@@ -154,3 +127,43 @@ canvas {
   z-index: -1;
   pointer-events: none;
 }
+#education {
+  background-color: transparent;
+  padding: 40px;
+  color: #fff;
+  text-align: center;
+}
+
+.education-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section-header {
+  margin-bottom: 20px;
+}
+
+.header-background {
+  background: #424bad;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-header .icon {
+  margin-right: 10px;
+  font-size: 32px;
+}
+
+.section-header h2 {
+  color: #fff;
+  margin: 0;
+  font-size: 42px; /* Adjust the font size as needed */
+}
+
+.education-details {
+  margin-top: 20px;
+}
+

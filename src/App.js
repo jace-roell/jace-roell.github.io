@@ -123,14 +123,35 @@ const App = () => {
       </div>
 
       <section id="education" className="content-section">
-        <SectionHeader icon={<FaGraduationCap />} title="Education" />
-        <p>
-          Pursuing a Bachelor of Science in Software Engineering with a
-          Mechatronics Minor at Robert Morris University, Coraopolis, PA.
-          Expected graduation: May 2024. Currently maintaining a GPA of
-          3.75/4.00.
-        </p>
-      </section>
+  <div className="education-container">
+    <div className="section-header">
+      <div className="header-background">
+        <FaGraduationCap className="icon" />
+        <h2>Education</h2>
+      </div>
+    </div>
+    <div className="education-details">
+      <h3>Robert Morris University, Coraopolis, PA</h3>
+      <p className="degree-info">
+        Currently pursuing a Bachelor of Science in Software Engineering with a minor in Mechatronics.
+      </p>
+      <p className="graduation-info">
+        <strong>Graduation Date:</strong> May 2024
+      </p>
+      <p className="gpa-info">
+        <strong>GPA:</strong> 3.75
+      </p>
+      <br></br>
+      <h3>South Park High School, South Park, PA</h3>
+      <p className="graduation-info">
+        <strong>Graduation Date:</strong> May 2020
+      </p>
+      <p className="gpa-info">
+        <strong>GPA:</strong> 3.61
+      </p>
+    </div>
+  </div>
+</section>
 
       <section id="experience" className="content-section">
         <SectionHeader icon={<FaBriefcase />} title="Experience" />
