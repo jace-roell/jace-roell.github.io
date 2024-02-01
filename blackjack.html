@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="selfthinker-CSS-Playing-Cards-7e0e0f2/cards.css" media="screen" />
+  <style>
+    body {
+      background-color: #006442;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #login-content {
+      margin-top: 50px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    label, input, button {
+      margin: 5px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #game-content {
+      display: none;
+    }
+
+    .game-info, .buttons {
+      margin-top: 20px;
+    }
+
+    #player-bet {
+      width: 50px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    .leaderboard {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #005335;
+      padding: 15px;
+      border-radius: 10px;
+      width: 400px;
+    }
+
+    .leaderboard h2 {
+      color: black;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    #leaderboard-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #leaderboard-list li {
+      color: black;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    #leaderboard-list li:nth-child(1) {
+      color: gold;
+    }
+
+    #leaderboard-list li:nth-child(2) {
+      color: silver;
+    }
+
+    #leaderboard-list li:nth-child(3) {
+      color: #cd7f32;
+    }
+
+    .playingCards {
+      display: inline-block;
+    }
+
+    .inline-card {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .hand-container {
+      display: inline-block;
+    }
+
+    #chat-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 10px;
+  width: 300px;
+  height: 300px;
+  color: white;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+#chat-messages {
+  max-height: 230px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  
+}
+#chat-messages p {
+  text-align: left;
+}
+  #chat-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+
+  #chat-input {
+  flex: 1;
+  width: 0;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+  #send-button {
+    padding: 5px;
+  }
+</style>
+
+</head>
+
+<body>
+  <div id="login-content">
+    <h1>Blackjack</h1>
+    <div>
+      <label for="alias">Enter Your Alias:</label>
+      <input type="text" id="alias" />
+      <button id="connectButton">Connect</button>
+    </div>
+  </div>
+
+  <div id="game-content" style="display: none;">
+    <div class="container">
+      <div class="leaderboard">
+        <h2>Leaderboard</h2>
+        <ol id="leaderboard-list">
+        </ol>
+      </div>
+
+      <div class="game-info">
+        <h1>Blackjack</h1>
+        <p>Player Balance: $<span id="player-balance">1000</span></p>
+        <p>Bet: $<input type="number" id="player-bet" min="20" step="5" value="20"></p>
+        <button id="start">Deal</button>
+      </div>
+      <div class="buttons">
+        <button id="hit" disabled>Hit</button>
+        <button id="stand" disabled>Stand</button>
+        <button id="double" disabled>Double Down</button>
+      </div>
+      <div class="hand">
+        <p id="dealer-hand">Dealer's hand: </p>
+        <p id="player-hand">Player's hand: </p>
+      </div>
+      <p id="round-result"></p>
+
+      <div id="chat-container">
+        <div id="chat-messages"></div>
+        <div id="chat-input-container">
+          <input type="text" id="chat-input" placeholder="Type your message..." />
+          <button id="send-button">Send</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/socket.io-client/dist/socket.io.js"></script>
+
+<script type="module">
+
+let connectedUser = null;
+const MAX_MESSAGE_LENGTH = 64;
+function truncateMessage(message) {
+    return message.length > MAX_MESSAGE_LENGTH ? message.slice(0, MAX_MESSAGE_LENGTH) + '...' : message;
+  }
+
+const socket = io('http://localhost:3001');
+//const socket = io('https://jxdmrpment.us-east-2.awsapprunner.com:3000');
+
+
+localStorage.setItem('socketID', socket.id);
+
+const loginContent = document.getElementById('login-content');
+const gameContent = document.getElementById('game-content');
+const aliasInput = document.getElementById('alias');
+const connectButton = document.getElementById('connectButton');
+
+connectButton.addEventListener('click', () => {
+  const alias = aliasInput.value.trim();
+
+  if (/^[a-zA-Z0-9 ]{3,32}$/.test(alias)) {
+    // Valid alias, hide login content and reveal game content
+    loginContent.style.display = 'none';
+    gameContent.style.display = 'block';
+
+    // Emit the alias to the server
+    socket.emit('hello', alias);
+  } else {
+    alert('Please enter a valid alias with 3 to 32 alphanumeric characters.');
+  }
+});
+
+socket.on('connect', () => {
+  console.log(`You connected with id: ${socket.id}`);
+  chatMessagesContainer.innerHTML = '';
+});
+
+const playerBalanceElement = document.getElementById('player-balance');
+const playerBetInput = document.getElementById('player-bet');
+const playerHandElement = document.getElementById('player-hand');
+const dealerHandElement = document.getElementById('dealer-hand');
+const roundResultElement = document.getElementById('round-result');
+const startButton = document.getElementById('start');
+const hitButton = document.getElementById('hit');
+const standButton = document.getElementById('stand');
+const doubleButton = document.getElementById('double');
+
+const chatMessagesContainer = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const sendButton = document.getElementById('send-button');
+
+    chatInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      sendButton.click(); // Trigger the "Send" button click
+    }
+  });
+
+  sendButton.addEventListener('click', () => {
+    const message = chatInput.value.trim();
+    if (message !== '') {
+      // Emit the chat message to the server
+      socket.emit('chatMessage', message);
+      chatInput.value = '';
+
+      // Scroll to the bottom after sending a message
+      chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+    }
+  });
+
+  socket.on('chatMessages', (messages) => {
+    // Update the chat messages container
+    chatMessagesContainer.innerHTML = messages
+      .map((msg) => `<p><strong>${msg.sender}:</strong> ${truncateMessage(msg.message)}</p>`)
+      .join('');
+
+    // Scroll to the bottom after receiving new messages
+    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+  });
+
+let playerBalance = 1000;
+// Set the minimum valid bet to 20
+let playerBet = 20; 
+let playerHand = [];
+let dealerHand = [];
+let deck = [];
+let roundStarted = false;
+
+requestLeaderboard();
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById("start").addEventListener('click', startGame)
+});
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById("hit").addEventListener('click', playerHit)
+});
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById("stand").addEventListener('click', playerStand)
+});
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById("double").addEventListener('click', doubleDown)
+});
+
+function updateLeaderboard(leaderboardData) {
+  const leaderboardList = document.getElementById('leaderboard-list');
+  leaderboardList.innerHTML = ''; // Clear the current leaderboard entries
+
+  for (const entry of leaderboardData) {
+    const listItem = document.createElement('li');
+    listItem.textContent = `${entry.alias}: $${entry.balance}`;
+    leaderboardList.appendChild(listItem);
+  }
+  io.emit('leaderboardUpdate', leaderboard);
+}
+
+function shuffle(deck) {
+  for (let i = deck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [deck[i], deck[j]] = [deck[j], deck[i]];
+  }
+}
+
+socket.on('leaderboard', (leaderboardData) => {
+  updateLeaderboard(leaderboardData);
+});
+
+// Function to send a request to the server to get the leaderboard
+function requestLeaderboard() {
+  socket.emit('update', { getLeaderboard: true });
+}
+
+// Function to update the player's balance and send it to the server
+function updatePlayerBalance(newBalance) {
+  playerBalance = newBalance;
+  playerBalanceElement.textContent = playerBalance;
+
+  // Send the updated balance to the server
+  socket.emit('update', { balance: newBalance });
+}
+
+function updatePlayerBalanceAndLeaderboard(newBalance) {
+  updatePlayerBalance(newBalance);
+  socket.emit('updateBalance', { newBalance });
+}
+
+function calculateScore(hand) {
+let score = 0;
+let numAces = 0;
+
+for (const card of hand) {
+  const cardValue = card.slice(0, -1);
+  const cardSuit = card.slice(-1);
+
+  if (cardValue === 'A') {
+    score += 11;
+    numAces++;
+  } else if (['K', 'Q', 'J'].includes(cardValue)) {
+    score += 10;
+  } else {
+    score += parseInt(cardValue);
+  }
+}
+
+while (score > 21 && numAces > 0) {
+  score -= 10;
+  numAces--;
+}
+
+return score;
+}
+let dealerCardsVisible = false; // Add a variable to track visibility of dealer's cards
+
+function displayHands(showHiddenCard = false) {
+  // Display Player's hand
+  playerHandElement.innerHTML = `Player's hand: <div class="hand-container">${playerHand.map(card => getCardHTML(card)).join('')}</div>`;
+
+  // Display Dealer's hand
+  if (showHiddenCard || dealerCardsVisible) {
+    dealerHandElement.innerHTML = `Dealer's hand: <div class="hand-container">${dealerHand.map(card => getCardHTML(card)).join('')}</div>`;
+    
+    // Update the flag only if showHiddenCard is true (player stands or busts)
+    if (showHiddenCard) {
+      dealerCardsVisible = true;
+    }
+  } else {
+    // Display both hidden and visible cards for the dealer at the start of each hand
+    dealerHandElement.innerHTML = `Dealer's hand: 
+      <div class="hand-container">
+        ${getCardHTML(dealerHand[0], true)}
+        ${getCardHTML(dealerHand[1])}
+      </div>`;
+    dealerCardsVisible = false; // Set the flag to false so that cards are hidden
+  }
+
+  playerBalanceElement.textContent = playerBalance;
+  playerBetInput.value = playerBet;
+}
+
+
+
+// Function to get HTML for a card based on its value (e.g., '6C')
+function getCardHTML(card, isHidden = false) {
+  const rank = card.slice(0, -1); // Extract rank (e.g., '6')
+  const suit = card.slice(-1);   // Extract suit (e.g., 'C')
+
+  const cardClass = isHidden ? 'card back' : `card rank-${rank.toLowerCase()} ${getSuitClass(suit)}`;
+
+  return `
+    <div class="playingCards inline-card">
+      <a class="${cardClass}" href="#">
+        ${isHidden ? '' : `<span class="rank">${rank}</span><span class="suit">${getSuitSymbol(suit)}</span>`}
+      </a>
+    </div>`;
+}
+
+// Helper function to get the class for the suit
+function getSuitClass(suit) {
+  // Map suit to class (hearts, diamonds, clubs, spades)
+  const suitMap = {
+    'H': 'hearts',
+    'D': 'diamonds',
+    'C': 'clubs',
+    'S': 'spades'
+  };
+  return `${suitMap[suit]} ${suit === 'D' ? 'diamonds' : ''}`.trim();
+}
+
+// Helper function to get the symbol for the suit
+function getSuitSymbol(suit) {
+  // Map suit to symbol (♥, ♦, ♣, ♠)
+  const suitSymbolMap = {
+    'H': '&hearts;',
+    'D': '&diams;',
+    'C': '&clubs;',
+    'S': '&spades;'
+  };
+  return suitSymbolMap[suit] || '';
+}
+
+
+function drawCard() {
+if (deck.length === 0) {
+  deck = [
+    '2S', '3S', '4S', '5S', '6S', '7S', '8S', '9S', '10S', 'JS', 'QS', 'KS', 'AS',
+    '2H', '3H', '4H', '5H', '6H', '7H', '8H', '9H', '10H', 'JH', 'QH', 'KH', 'AH',
+    '2D', '3D', '4D', '5D', '6D', '7D', '8D', '9D', '10D', 'JD', 'QD', 'KD', 'AD',
+    '2C', '3C', '4C', '5C', '6C', '7C', '8C', '9C', '10C', 'JC', 'QC', 'KC', 'AC'
+  ];
+  shuffle(deck);
+}
+return deck.pop();
+}
+
+function startGame() {
+  if (!roundStarted) {
+    const betValue = parseInt(playerBetInput.value);
+    if (betValue >= 20 && betValue <= playerBalance) {
+      roundStarted = true;
+      startButton.disabled = true;
+      hitButton.disabled = false;
+      standButton.disabled = false;
+      doubleButton.disabled = false;
+
+      playerBet = betValue;
+      playerBalance -= playerBet;
+      playerHand = [drawCard(), drawCard()];
+      dealerHand = [drawCard(), drawCard()];
+      
+      // Reset dealerCardsVisible to false at the start of each new game
+      dealerCardsVisible = false;
+
+      // Check for blackjack
+      if (calculateScore(playerHand) === 21) {
+        if (calculateScore(dealerHand) === 21) {
+          // Tie, return player money
+          endRound('Blackjack! It\'s a tie!', 1); 
+        } else {
+          // Update the player's balance and leaderboard
+          updatePlayerBalanceAndLeaderboard(playerBalance + playerBet * 2);
+          endRound('Blackjack! You win 2x!', 2);
+        }
+      } else {
+        displayHands();
+      }
+    } else {
+      alert('Please enter a valid bet between 20 and your available balance.');
+    }
+  }
+}
+
+function playerHit() {
+  if (roundStarted) {
+    playerHand.push(drawCard());
+    displayHands();
+
+    const playerScore = calculateScore(playerHand);
+
+    // Auto-stand if the player has a total of 21
+    if (playerScore === 21) {
+      playerStand();
+    }
+
+    // Check for bust after hitting
+    if (playerScore > 21) {
+      // Multiplier for payout is zero so no money is returned
+      endRound('Bust! You lose.', 0);
+    }
+  }
+}
+
+function playerStand() {
+if (roundStarted) {
+// Show the hidden card
+displayHands(true); 
+while (calculateScore(dealerHand) < 17) {
+dealerHand.push(drawCard());
+ // Update the dealer's hand in real-time
+displayHands(true);
+}
+
+const playerScore = calculateScore(playerHand);
+const dealerScore = calculateScore(dealerHand);
+
+if (playerScore > 21) {
+ // No payout when the player busts
+endRound('Bust! You lose.', 0);
+} else if (dealerScore > 21 || playerScore > dealerScore) {
+ // Player wins, 2x payout
+endRound('You win!', 2);
+} else if (playerScore === dealerScore) {
+// Tie, 1x payout
+endRound('It\'s a tie!', 1); 
+} else {
+// Player loses, no payout
+endRound('Dealer wins!', 0); 
+}
+}
+}
+
+function doubleDown() {
+if (roundStarted && playerBalance >= playerBet) {
+  playerBet *= 2;
+  playerHit();
+  if (calculateScore(playerHand) <= 21) {
+    playerStand();
+  }
+} else {
+  alert('Insufficient balance to double down or round not started.');
+}
+}
+
+
+
+function endRound(result = '', payoutMultiplier = 2) {
+  if (roundStarted) {
+    displayHands(true); // Show the hidden card
+
+    if (payoutMultiplier > 0) {
+      playerBalance += playerBet * payoutMultiplier;
+      // Update the player's balance and leaderboard
+    }
+    updatePlayerBalanceAndLeaderboard(playerBalance);
+    startButton.disabled = false;
+    hitButton.disabled = true;
+    standButton.disabled = true;
+    doubleButton.disabled = true;
+
+    const roundResultElement = document.createElement('p');
+    roundResultElement.textContent = result;
+    roundResultElement.style.fontSize = '24px';
+    roundResultElement.id = 'round-result';
+    document.body.appendChild(roundResultElement);
+
+    setTimeout(() => {
+      roundResultElement.remove();
+      roundStarted = false;
+      displayHands(); // Clear the hands
+      playerBalanceElement.textContent = playerBalance; // Update balance
+    }, 0);
+  }
+}
+</script>
