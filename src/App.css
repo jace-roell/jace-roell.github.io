@@ -44,10 +44,6 @@ body {
 .tab.active {
   background: linear-gradient(90deg, #424bad,#cc3131);
 }
-.content-section {
-  min-height: 500vh; /* may need adjusted */
-  padding: 50px 0; /* may need adjusted */
-}
 
 #welcome-no-highlight {
   background-color: transparent;
@@ -60,18 +56,22 @@ body {
 
 #experience {
   background-color: transparent;
+  min-height: 50vh !important; 
 }
 
 #projects {
   background-color: transparent;
+  min-height: 50vh !important; 
 }
 
 #skills {
   background-color: transparent;
+  min-height: 75vh !important; 
 }
 
 #contacts {
   background-color: transparent;
+  min-height: 50vh !important; 
 }
 
 .welcome-container {
@@ -187,5 +187,5 @@ canvas {
 
 .experience-item .bullet-points {
   margin-top: 10px;
-  text-align: right; /* Align the date section to the right */
+  text-align: left;
 }

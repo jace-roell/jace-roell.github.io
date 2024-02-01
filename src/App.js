@@ -123,11 +123,11 @@ const App = () => {
         </div>
 
         <div className="experience-item">
-          <img src={require("./uss.png")} alt="image not found" />
+          <img src={require("./ussRemovedBackground.png")} alt="image not found" />
           <div>
             <div className="experience-header">
               <h3>Plant Systems Developer Co-op</h3>
-              <p className="date">United States Steel Corporation | June 2022 - August 2022</p>
+              <p className="date">United States Steel Corporation | May 2023 - Current</p>
             </div>
             <BulletPoints
               className="bullet-points"
@@ -145,26 +145,37 @@ const App = () => {
         <div className="experience-item">
           <img src={require("./rmu.png")} alt="image not found" />
           <div>
-            <h3>Laser Plastic Welding Researcher</h3>
-            {/* Add date section here */}
+            <div className="experience-header">
+              <h3>Laser Welding Research Intern</h3>
+              <p className="date">Robert Morris University | August 2022 - May 2023</p>
+            </div>
             <BulletPoints
               className="bullet-points"
               points={[
-                // ... Your existing points ...
+                "Collaborated with cross-functional teams to efficiently achieve project objectives.",
+                "Demonstrated proficiency in NI LabVIEW for system development and optimization.",
+                "Expertly operated thermal cameras to capture and analyze data, facilitating informed decision-making.",
+                "Successfully researched and implemented feedback loop systems using WinLase, NI LabVIEW, and PIX Connect to enhance uniformity and weld strength.",
               ]}
             />
           </div>
         </div>
 
         <div className="experience-item">
-          <img src={require("./dlc.jpg")} alt="image not found" />
+          <img src={require("./dlcDarkModeRemovedBackground.png")} alt="image not found" />
           <div>
-            <h3>IT Department Internship/PC Support</h3>
-            {/* Add date section here */}
-            <BulletPoints
+          <div className="experience-header">
+              <h3>PC Support Intern</h3>
+              <p className="date">Duquesne Light Company | May 2021 - August 2022</p>
+            </div>
+
+                        <BulletPoints
               className="bullet-points"
               points={[
-                // ... Your existing points ...
+                "Reimaged and configured over 500 PCs to the company standard so they could be distributed to employees.",
+                "Repaired, decommissioned, or updated various Windows OS PCs.",
+                "Solved Cherwell IT support tickets, requiring in-depth computer knowledge and problem-solving skills.",
+                "Communicated efficiently among the PC support team to establish standards and information to provide quality services.",
               ]}
             />
           </div>
