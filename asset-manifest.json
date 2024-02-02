@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.14cd0923.css",
-    "main.js": "/static/js/main.8c648003.js",
-    "static/js/787.7da95b79.chunk.js": "/static/js/787.7da95b79.chunk.js",
-    "static/media/ussRemovedBackground.png": "/static/media/ussRemovedBackground.b7b8d70e983f2a59feff.png",
-    "static/media/rmu.png": "/static/media/rmu.6a65391a7e8702347740.png",
-    "static/media/dlcDarkModeRemovedBackground.png": "/static/media/dlcDarkModeRemovedBackground.c7afb8c617f3fd61d507.png",
-    "index.html": "/index.html",
-    "main.14cd0923.css.map": "/static/css/main.14cd0923.css.map",
-    "main.8c648003.js.map": "/static/js/main.8c648003.js.map",
-    "787.7da95b79.chunk.js.map": "/static/js/787.7da95b79.chunk.js.map"
+    "main.css": "/jace-roell.github.io/static/css/main.14cd0923.css",
+    "main.js": "/jace-roell.github.io/static/js/main.d902f245.js",
+    "static/js/787.7da95b79.chunk.js": "/jace-roell.github.io/static/js/787.7da95b79.chunk.js",
+    "static/media/ussRemovedBackground.png": "/jace-roell.github.io/static/media/ussRemovedBackground.b7b8d70e983f2a59feff.png",
+    "static/media/rmu.png": "/jace-roell.github.io/static/media/rmu.6a65391a7e8702347740.png",
+    "static/media/dlcDarkModeRemovedBackground.png": "/jace-roell.github.io/static/media/dlcDarkModeRemovedBackground.c7afb8c617f3fd61d507.png",
+    "index.html": "/jace-roell.github.io/index.html",
+    "main.14cd0923.css.map": "/jace-roell.github.io/static/css/main.14cd0923.css.map",
+    "main.d902f245.js.map": "/jace-roell.github.io/static/js/main.d902f245.js.map",
+    "787.7da95b79.chunk.js.map": "/jace-roell.github.io/static/js/787.7da95b79.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.14cd0923.css",
-    "static/js/main.8c648003.js"
+    "static/js/main.d902f245.js"
   ]
 }
