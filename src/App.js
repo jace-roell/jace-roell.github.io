@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import StarryBackground from "./starryBackground";
+import ProjectEntry from './projectEntry';
 import {
   FaGraduationCap,
   FaBriefcase,
@@ -34,6 +35,17 @@ const BulletPoints = ({ points }) => (
 
 const App = () => {
   const [currentSection, setCurrentSection] = useState("");
+
+  const projectsData = [
+    {
+      imageUrl: require("./blackjackExample.png"),
+      name: "Live Blackjack Game",
+      description: "Blackjack game to allow for live competition between users to achieve the highest balance",
+      learnMoreHref: "https://github.com/jace-roell/online-blackjack",
+      liveAppHref: "./blackjack.html",
+      technologies: "JavaScript, HTML, CSS, Socket.io, Heroku",
+    },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -197,52 +209,32 @@ const App = () => {
       </section>
 
       <section id="projects" className="content-section">
+        <div className="header-container">
+          <div className="section-header">
+            <div className="header-background-blue">
+              <FaCode className="icon" />
+              <h2>Projects</h2>
+            </div>
+          </div>
+          </div>
+            {projectsData.map((project, index) => (
+              <ProjectEntry key={index} {...project} />
+            ))}
+
+      </section>
+
+<section id="skills" className="content-section">
   <div className="header-container">
     <div className="section-header">
-      <div className="header-background-blue">
-        <FaCode className="icon" />
-        <h2>Projects</h2>
+      <div className="header-background-red">
+        <FaTools className="icon" />
+        <h2>Skills</h2>
       </div>
     </div>
-    <div className="buttons-container">
-      <a
-        href="/blackjack.html"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="try-now-btn"
-      >
-        Try it now!
-      </a>
-      <a
-        href="https://github.com/jace-roell/online-blackjack"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="learn-more-btn"
-      >
-        Learn more
-      </a>
-    </div>
-  </div>
-  <div className="reference-image-container">
-    <img
-      src={require("./blackjackExample.png")}
-      alt="image not found"
-      className="reference-image"
-    />
   </div>
 </section>
 
 
-      <section id="skills" className="content-section">
-        <div className="header-container">
-          <div className="section-header">
-            <div className="header-background-red">
-              <FaTools className="icon" />
-              <h2>Skills</h2>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section id="education" className="content-section">
         <div className="header-container">

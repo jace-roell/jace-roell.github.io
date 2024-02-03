@@ -1,0 +1,83 @@
+
+.project-entry {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    margin-top: 30px;
+    margin-left: 400px;
+    margin-right: 300px;
+    align-items: center;
+}
+
+.sub-header-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+}
+
+.project-header {
+    text-align: center;
+    font-size: 48px;
+}
+
+.project-header h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.technologies {
+    font-size: 18px;
+    color: gray;
+    text-align: center;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.try-now-btn,
+.learn-more-btn {
+    margin-bottom: 10px;
+    padding: 12px 20px;
+    background-color: transparent;
+    color: #fff;
+    text-decoration: underline;
+    transition: background 0.3s, color 0.3s;
+    white-space: nowrap;
+    font-size: 32px;
+    text-align: center;
+}
+
+.try-now-btn:hover {
+    color: #fff;
+    background-color: #424bad;
+}
+
+.learn-more-btn:hover {
+    background-color: #ad2929;
+    color: #fff;
+}
+
+.reference-image-container {
+
+}
+.reference-image {
+    max-width: 1000px;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px
+}
+
+.project-info {
+    flex: 1;
+    align-content: center;
+}
+.vertical-align
+{
+    vertical-align:middle;
+}
