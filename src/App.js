@@ -9,6 +9,7 @@ import {
   FaEnvelope,
   FaArrowDown,
 } from "react-icons/fa";
+
 const TabLink = ({ sectionId, currentSection, scrollToSection, children }) => {
   const isActive = currentSection === sectionId;
 
@@ -62,21 +63,21 @@ const App = () => {
   return (
     <div className="app">
       <section id="welcome-no-highlight" className="content-section">
-      <div className="welcome-container">
-        <StarryBackground />
-        <div className="welcome">
-          <h1>Hello, my name is Jace Roell</h1>
-          <button
-            className="view-portfolio-btn"
-            onClick={() => scrollToSection("experience")}
-          >
-            View My Portfolio <FaArrowDown />
-          </button>
+        <div className="welcome-container">
+          <StarryBackground />
+          <div className="welcome">
+            <h1>Hello, my name is Jace Roell</h1>
+            <button
+              className="view-portfolio-btn"
+              onClick={() => scrollToSection("experience")}
+            >
+              View My Portfolio <FaArrowDown />
+            </button>
+          </div>
         </div>
-      </div>
       </section>
       <div className="tabs">
-      <TabLink
+        <TabLink
           sectionId="experience"
           currentSection={currentSection}
           scrollToSection={scrollToSection}
@@ -114,88 +115,123 @@ const App = () => {
       </div>
 
       <section id="experience" className="content-section">
-      <div className="header-container">
-        <div className="section-header">
-          <div className="header-background-red">
-            <FaBriefcase className="icon" />
-            <h2>Experience</h2>
-          </div>
-        </div>
-
-        <div className="experience-item">
-          <img src={require("./ussRemovedBackground.png")} alt="image not found" />
-          <div>
-            <div className="experience-header">
-              <h3>Plant Systems Developer Co-op</h3>
-              <p className="date">United States Steel Corporation | May 2023 - Current</p>
-            </div>
-            <BulletPoints
-              className="bullet-points"
-              points={[
-                "Collaborated with cross-functional teams to translate project requirements into seamless web solutions.",
-                "Proficient in tackling complex web development challenges using a combination of critical thinking, analytical skills, and a deep understanding of technologies like JavaScript, TypeScript, and C#.",
-                "Developed efficient and scalable web pages tailored to the specific needs of both business planning professionals and plant workers, enhancing productivity fulfilling business requirements.",
-                "Designed visually appealing and user-friendly web interfaces using HTML and CSS, ensuring seamless navigation and a consistent, polished user experience across all projects and platforms.",
-                "Application of technologies including: ASP.NET MVC, SQL Developer, Angular 15, Git, Azure Dev Ops",
-              ]}
-            />
-          </div>
-        </div>
-
-        <div className="experience-item">
-          <img src={require("./rmu.png")} alt="image not found" />
-          <div>
-            <div className="experience-header">
-              <h3>Laser Welding Research Intern</h3>
-              <p className="date">Robert Morris University | August 2022 - May 2023</p>
-            </div>
-            <BulletPoints
-              className="bullet-points"
-              points={[
-                "Collaborated with cross-functional teams to efficiently achieve project objectives.",
-                "Demonstrated proficiency in NI LabVIEW for system development and optimization.",
-                "Expertly operated thermal cameras to capture and analyze data, facilitating informed decision-making.",
-                "Successfully researched and implemented feedback loop systems using WinLase, NI LabVIEW, and PIX Connect to enhance uniformity and weld strength.",
-              ]}
-            />
-          </div>
-        </div>
-
-        <div className="experience-item">
-          <img src={require("./dlcDarkModeRemovedBackground.png")} alt="image not found" />
-          <div>
-          <div className="experience-header">
-              <h3>PC Support Intern</h3>
-              <p className="date">Duquesne Light Company | May 2021 - August 2022</p>
-            </div>
-
-                        <BulletPoints
-              className="bullet-points"
-              points={[
-                "Reimaged and configured over 500 PCs to the company standard so they could be distributed to employees.",
-                "Repaired, decommissioned, or updated various Windows OS PCs.",
-                "Solved Cherwell IT support tickets, requiring in-depth computer knowledge and problem-solving skills.",
-                "Communicated efficiently among the PC support team to establish standards and information to provide quality services.",
-              ]}
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-      
-      <section id="projects" className="content-section">
         <div className="header-container">
           <div className="section-header">
-            <div className="header-background-blue">
-              <FaCode className="icon" />
-              <h2>Projects</h2>
+            <div className="header-background-red">
+              <FaBriefcase className="icon" />
+              <h2>Experience</h2>
             </div>
           </div>
-          <a href="/blackjack.html" target="_blank" rel="noopener noreferrer">
-            View Blackjack
-          </a>
+
+          <div className="experience-item">
+            <img
+              src={require("./ussRemovedBackground.png")}
+              alt="image not found"
+            />
+            <div>
+              <div className="experience-header">
+                <h3>Plant Systems Developer Co-op</h3>
+                <p className="date">
+                  United States Steel Corporation | May 2023 - Current
+                </p>
+              </div>
+              <BulletPoints
+                className="bullet-points"
+                points={[
+                  "Collaborated with cross-functional teams to translate project requirements into seamless web solutions.",
+                  "Proficient in tackling complex web development challenges using a combination of critical thinking, analytical skills, and a deep understanding of technologies like JavaScript, TypeScript, and C#.",
+                  "Developed efficient and scalable web pages tailored to the specific needs of both business planning professionals and plant workers, enhancing productivity fulfilling business requirements.",
+                  "Designed visually appealing and user-friendly web interfaces using HTML and CSS, ensuring seamless navigation and a consistent, polished user experience across all projects and platforms.",
+                  "Application of technologies including: ASP.NET MVC, SQL Developer, Angular 15, Git, Azure Dev Ops",
+                ]}
+              />
+            </div>
+          </div>
+
+          <div className="experience-item">
+            <img src={require("./rmu.png")} alt="image not found" />
+            <div>
+              <div className="experience-header">
+                <h3>Laser Welding Research Intern</h3>
+                <p className="date">
+                  Robert Morris University | August 2022 - May 2023
+                </p>
+              </div>
+              <BulletPoints
+                className="bullet-points"
+                points={[
+                  "Collaborated with cross-functional teams to efficiently achieve project objectives.",
+                  "Demonstrated proficiency in NI LabVIEW for system development and optimization.",
+                  "Expertly operated thermal cameras to capture and analyze data, facilitating informed decision-making.",
+                  "Successfully researched and implemented feedback loop systems using WinLase, NI LabVIEW, and PIX Connect to enhance uniformity and weld strength.",
+                ]}
+              />
+            </div>
+          </div>
+
+          <div className="experience-item">
+            <img
+              src={require("./dlcDarkModeRemovedBackground.png")}
+              alt="image not found"
+            />
+            <div>
+              <div className="experience-header">
+                <h3>PC Support Intern</h3>
+                <p className="date">
+                  Duquesne Light Company | May 2021 - August 2022
+                </p>
+              </div>
+
+              <BulletPoints
+                className="bullet-points"
+                points={[
+                  "Reimaged and configured over 500 PCs to the company standard so they could be distributed to employees.",
+                  "Repaired, decommissioned, or updated various Windows OS PCs.",
+                  "Solved Cherwell IT support tickets, requiring in-depth computer knowledge and problem-solving skills.",
+                  "Communicated efficiently among the PC support team to establish standards and information to provide quality services.",
+                ]}
+              />
+            </div>
+          </div>
         </div>
       </section>
+
+      <section id="projects" className="content-section">
+  <div className="header-container">
+    <div className="section-header">
+      <div className="header-background-blue">
+        <FaCode className="icon" />
+        <h2>Projects</h2>
+      </div>
+    </div>
+    <div className="buttons-container">
+      <a
+        href="/blackjack.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="try-now-btn"
+      >
+        Try it now!
+      </a>
+      <a
+        href="https://github.com/jace-roell/online-blackjack"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="learn-more-btn"
+      >
+        Learn more
+      </a>
+    </div>
+  </div>
+  <div className="reference-image-container">
+    <img
+      src={require("./blackjackExample.png")}
+      alt="image not found"
+      className="reference-image"
+    />
+  </div>
+</section>
+
 
       <section id="skills" className="content-section">
         <div className="header-container">
@@ -239,7 +275,7 @@ const App = () => {
           </div>
         </div>
       </section>
-      
+
       <section id="contact" className="content-section">
         <div className="header-container">
           <div className="section-header">
