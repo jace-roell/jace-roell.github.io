@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import StarryBackground from "./starryBackground";
-import ProjectEntry from './projectEntry';
+import ProjectEntry from "./projectEntry";
+import WelcomeIcons from "./welcomeIcons";
 import {
   FaGraduationCap,
   FaBriefcase,
@@ -32,18 +33,53 @@ const BulletPoints = ({ points }) => (
     ))}
   </ul>
 );
+const Footer = () => {
+  const iconStyle = {
+    width: "30px",
+    height: "30px",
+    marginRight: "10px",
+  };
+
+  return (
+    <footer style={{ backgroundColor: "#333", padding: "20px 0", textAlign: "center" }} className="footer">
+      <div className="footer-icons">
+        <a href="https://github.com/jace-roell" target="_blank" rel="noopener noreferrer">
+          <img style={iconStyle} src={require("./images/github.png")} alt="GitHub" />
+        </a>
+        <a href="https://www.linkedin.com/in/jace-roell" target="_blank" rel="noopener noreferrer">
+          <img style={iconStyle} src={require("./images/linkedin.png")} alt="LinkedIn" />
+        </a>
+        <a href="mailto:jace.roell@hotmail.com">
+          <img style={iconStyle} src={require("./images/mail.png")} alt="Email" />
+        </a>
+      </div>
+    </footer>
+  );
+};
+
 
 const App = () => {
   const [currentSection, setCurrentSection] = useState("");
 
   const projectsData = [
     {
-      imageUrl: require("./blackjackExample.png"),
+      imageUrl: require("./images/blackjackExample.png"),
       name: "Live Blackjack Game",
-      description: "Blackjack game to allow for live competition between users to achieve the highest balance",
+      description:
+        "Blackjack game to allow for live competition between users to achieve the highest balance",
       learnMoreHref: "https://github.com/jace-roell/online-blackjack",
       liveAppHref: "./blackjack.html",
-      technologies: "JavaScript, HTML, CSS, Socket.io, Heroku",
+      technologies: "HTML, CSS, JavaScript, Socket.io, Heroku",
+    },
+    {
+      imageUrl: require("./images/starlinkExample.PNG"),
+      name: "Starlink Satellite Tracker",
+      description:
+        "Leverages Google and n2yo API to display visible passes of starlink satellites within your area",
+      learnMoreHref:
+        "https://github.com/jace-roell/https://github.com/jace-roell/starlink-satellite-tracker-public",
+      liveAppHref: "",
+      technologies: "React.js, JavaScript, HTML, CSS, Python",
     },
   ];
 
@@ -73,12 +109,13 @@ const App = () => {
   };
 
   return (
+    
     <div className="app">
       <section id="welcome-no-highlight" className="content-section">
         <div className="welcome-container">
           <StarryBackground />
           <div className="welcome">
-            <h1>Hello, my name is Jace Roell</h1>
+            <h1>Hello, my name is Jace Roell <WelcomeIcons /></h1>
             <button
               className="view-portfolio-btn"
               onClick={() => scrollToSection("experience")}
@@ -117,13 +154,6 @@ const App = () => {
         >
           <FaGraduationCap /> Education
         </TabLink>
-        <TabLink
-          sectionId="contact"
-          currentSection={currentSection}
-          scrollToSection={scrollToSection}
-        >
-          <FaEnvelope /> Contact Me
-        </TabLink>
       </div>
 
       <section id="experience" className="content-section">
@@ -137,7 +167,7 @@ const App = () => {
 
           <div className="experience-item">
             <img
-              src={require("./ussRemovedBackground.png")}
+              src={require("./images/ussRemovedBackground.png")}
               alt="image not found"
             />
             <div>
@@ -161,7 +191,7 @@ const App = () => {
           </div>
 
           <div className="experience-item">
-            <img src={require("./rmu.png")} alt="image not found" />
+            <img src={require("./images/rmu.png")} alt="image not found" />
             <div>
               <div className="experience-header">
                 <h3>Laser Welding Research Intern</h3>
@@ -183,7 +213,7 @@ const App = () => {
 
           <div className="experience-item">
             <img
-              src={require("./dlcDarkModeRemovedBackground.png")}
+              src={require("./images/dlcDarkModeRemovedBackground.png")}
               alt="image not found"
             />
             <div>
@@ -216,25 +246,153 @@ const App = () => {
               <h2>Projects</h2>
             </div>
           </div>
-          </div>
-            {projectsData.map((project, index) => (
-              <ProjectEntry key={index} {...project} />
-            ))}
-
+        </div>
+        {projectsData.map((project, index) => (
+          <ProjectEntry key={index} {...project} />
+        ))}
       </section>
 
-<section id="skills" className="content-section">
-  <div className="header-container">
-    <div className="section-header">
-      <div className="header-background-red">
-        <FaTools className="icon" />
-        <h2>Skills</h2>
-      </div>
-    </div>
-  </div>
-</section>
-
-
+      <section id="skills" className="content-section">
+        <div className="header-container">
+          <div className="section-header">
+            <div className="header-background-red">
+              <FaTools className="icon" />
+              <h2>Skills</h2>
+            </div>
+          </div>
+        </div>
+        <div className="skills-content-container">
+        <div className="skills-content">
+        <h2>Frameworks</h2>
+            <div className="row">
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/react.png")} alt="React Icon" />
+                  <p>React.js</p>
+                </div>
+              </div>
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/angular.png")} alt="Angular Icon" />
+                  <p>Angular.js</p>
+                </div>
+              </div>
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/dotNet.png")} alt="dotNet Icon" />
+                  <p>ASP.Net MVC</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="skills-content">
+            <h2>Languages</h2>
+            <div className="row">
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/html.png")} alt="HTML Icon" />
+                  <p>HTML</p>
+                </div>
+              </div>
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/css.png")} alt="CSS Icon" />
+                  <p>CSS</p>
+                </div>
+              </div>
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/js.png")} alt="JavaScript Icon" />
+                  <p>JavaScript</p>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/ts.png")} alt="TS Icon" />
+                  <p>TypeScript</p>
+                </div>
+              </div>
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/c.png")} alt="C Icon" />
+                  <p>C</p>
+                </div>
+              </div>
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/cpp.png")} alt="C++ Icon" />
+                  <p>C++</p>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/cSharp.png")} alt="C# Icon" />
+                  <p>C#</p>
+                </div>
+              </div>
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/java.png")} alt="Java Icon" />
+                  <p>Java</p>
+                </div>
+              </div>
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/sql.png")} alt="SQL Dev Icon" />
+                  <p>SQL Developer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="skills-content">
+          <h2>Tools/Libraries</h2>
+            <div className="row">
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/node.png")} alt="Node.js Icon" />
+                  <p>Node.js</p>
+                </div>
+              </div>
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/heroku.png")} alt="Heroku Icon" />
+                  <p>Heroku</p>
+                </div>
+              </div>
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/knockout.png")} alt="Knockout Icon" />
+                  <p>Knockout.js</p>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/ado.webp")} alt="Azure Dev Ops Icon" />
+                  <p>Azure Dev Ops</p>
+                </div>
+              </div>
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/vs.png")} alt="Visual Studio Icon" />
+                  <p>Visual Studio</p>
+                </div>
+              </div>
+              <div className="icon-container">
+                <div className="column">
+                  <img src={require("./images/swagger.png")} alt="Swagger Icon" />
+                  <p>Swagger</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section id="education" className="content-section">
         <div className="header-container">
@@ -267,17 +425,7 @@ const App = () => {
           </div>
         </div>
       </section>
-
-      <section id="contact" className="content-section">
-        <div className="header-container">
-          <div className="section-header">
-            <div className="header-background-red">
-              <FaEnvelope className="icon" />
-              <h2>Contact Me</h2>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Footer />
     </div>
   );
 };

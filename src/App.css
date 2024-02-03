@@ -49,37 +49,17 @@ body {
   background-color: transparent;
   min-height: 50vh !important; 
 }
-#education {
-  background-color: transparent;
-  min-height: 50vh !important; 
-}
 
-#experience {
-  background-color: transparent;
-  min-height: 50vh !important; 
-}
-
-#projects {
-  background-color: transparent;
-  min-height: 50vh !important; 
-}
-
-#skills {
-  background-color: transparent;
-  min-height: 75vh !important; 
-}
-
-#contacts {
-  background-color: transparent;
-  min-height: 50vh !important; 
-}
 
 .welcome-container {
   position: relative;
   overflow: hidden;
   background-color: transparent;
 }
-
+#education
+{
+  height: 100vh;
+}
 .welcome {
   height: 100vh;
   display: flex;
@@ -154,7 +134,8 @@ canvas {
 }
 
 .education-details {
-  margin-top: 20px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 #experience {
   background-color: transparent;
@@ -182,4 +163,39 @@ canvas {
 .experience-item .bullet-points {
   margin-top: 10px;
   text-align: left;
+}
+.skills-content-container {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.skills-content {
+  flex: 1;
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icon-container img {
+  width: 125px;
+  height: 125px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 33.33%;
+  padding: 5px;
 }
