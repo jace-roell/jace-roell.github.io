@@ -6,6 +6,7 @@ body {
 .app {
   background-color: transparent;
   color: #fff;
+  overflow-x: hidden;
 }
 
 .welcome {
