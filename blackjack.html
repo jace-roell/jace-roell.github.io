@@ -178,55 +178,53 @@
 
     @media screen and (max-width: 600px) {
     .container {
-      padding: 10px;
-      position: relative; /* Add relative positioning to the container */
+        padding: 10px;
+        position: relative; /* Add relative positioning to the container */
     }
     .leaderboard {
-      margin-top: 20px; /* Adjust margin-top to create space */
-      background-color: #005335;
-      padding: 15px;
-      border-radius: 10px;
-      width: 100%; /* Occupy full width */
-      z-index: 1; /* Ensure the leaderboard stays above other content */
+        position: static; /* Change position to static to allow flow in the document */
+        background-color: #005335;
+        padding: 15px;
+        border-radius: 10px;
+        width: 100%; /* Adjust width to fill the container */
+        max-width: calc(100% - 20px); /* Adjust max-width to fit within the container */
+        margin-bottom: 10px; /* Add margin-bottom to create space below the leaderboard */
+        z-index: 1; /* Ensure the leaderboard stays above other content */
     }
     #leaderboard-list li:nth-child(n+4) {
-      display: none;
-    }
-    #game-content {
-      margin-top: 20px; /* Adjust margin-top to create space */
+        display: none;
     }
     #chat-container {
-      margin-top: 20px; /* Adjust margin-top to create space */
-      background-color: #333;
-      padding: 10px;
-      border-radius: 10px;
-      width: 300px;
-      height: 300px;
-      color: white;
-      overflow-y: auto;
+        position: static; /* Revert to static positioning */
+        background-color: #333;
+        padding: 10px;
+        border-radius: 10px;
+        width: 100%; /* Adjust width to fill the container */
+        color: white;
+        overflow-y: auto;
     }
     #chat-messages {
-      max-height: 230px;
-      overflow-y: auto;
-      white-space: pre-wrap;
-      word-wrap: break-word;
+        max-height: calc(100vh - 460px); /* Adjust max-height to fill remaining space */
+        overflow-y: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
     }
     #chat-input-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 5px;
     }
     #chat-input {
-      flex: 1;
-      width: 0;
-      padding: 5px;
-      margin-right: 5px;
+        flex: 1;
+        width: 0;
+        padding: 5px;
+        margin-right: 5px;
     }
     #send-button {
-      padding: 5px;
+        padding: 5px;
     }
-  }
+}
   </style>
 
 </head>
