@@ -132,49 +132,75 @@
     }
 
     #chat-container {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: #333;
-  padding: 10px;
-  border-radius: 10px;
-  width: 300px;
-  height: 300px;
-  color: white;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #333;
+      padding: 10px;
+      border-radius: 10px;
+      width: 300px;
+      height: 300px;
+      color: white;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
 
-#chat-messages {
-  max-height: 230px;
-  overflow-y: auto;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  
-}
-#chat-messages p {
-  text-align: left;
-}
-  #chat-input-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 5px;
-  }
+    #chat-messages {
+      max-height: 230px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
 
-  #chat-input {
-  flex: 1;
-  width: 0;
-  padding: 5px;
-  margin-right: 5px;
-}
+    #chat-messages p {
+      text-align: left;
+    }
 
-  #send-button {
-    padding: 5px;
-  }
-</style>
+    #chat-input-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 5px;
+    }
+
+    #chat-input {
+      flex: 1;
+      width: 0;
+      padding: 5px;
+      margin-right: 5px;
+    }
+
+    #send-button {
+      padding: 5px;
+    }
+
+    /* Mobile Styles */
+    @media screen and (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
+      .leaderboard {
+        position: static;
+        width: auto;
+        margin-top: 20px;
+      }
+      #chat-container {
+        position: static;
+        width: auto;
+        margin-top: 20px;
+        height: auto; /* Adjusting height to fit content */
+        max-height: none; /* Removing max-height constraint */
+      }
+      #chat-messages {
+        max-height: none; /* Allowing chat messages to expand */
+      }
+      #chat-input {
+        width: calc(100% - 70px); /* Adjusting width of input field */
+      }
+    }
+  </style>
 
 </head>
 
