@@ -196,9 +196,8 @@
       display: none;
     }
     #chat-container {
-      position: absolute;
-      top: 10px;
-      left: 10px;
+      position: static; /* Revert to static positioning */
+      margin-top: 20px; /* Adjust margin-top to create space below the leaderboard */
       background-color: #333;
       padding: 10px;
       border-radius: 10px;
@@ -206,7 +205,6 @@
       height: 300px;
       color: white;
       overflow-y: auto;
-      z-index: 1; /* Ensure the chat container stays above other content */
     }
     #chat-messages {
       max-height: 230px;
