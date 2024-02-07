@@ -176,30 +176,34 @@
       padding: 5px;
     }
 
-    /* Mobile Styles */
     @media screen and (max-width: 600px) {
-      .container {
+    .container {
         padding: 10px;
-      }
-      .leaderboard {
-        position: static;
-        width: auto;
-        margin-top: 20px;
-      }
-      #chat-container {
-        position: static;
-        width: auto;
-        margin-top: 20px;
-        height: auto; /* Adjusting height to fit content */
-        max-height: none; /* Removing max-height constraint */
-      }
-      #chat-messages {
-        max-height: none; /* Allowing chat messages to expand */
-      }
-      #chat-input {
-        width: calc(100% - 70px); /* Adjusting width of input field */
-      }
+        position: relative; /* Add relative positioning to the container */
     }
+    .leaderboard {
+        position: static; /* Change position to static to allow flow in the document */
+        background-color: #005335;
+        padding: 15px;
+        border-radius: 10px;
+        width: 100%; /* Adjust width to fill the container */
+        max-width: calc(100% - 20px); /* Adjust max-width to fit within the container */
+        margin-bottom: 10px; /* Add margin-bottom to create space below the leaderboard */
+        z-index: 1; /* Ensure the leaderboard stays above other content */
+        min-height: 150px;
+    }
+    #leaderboard-list li:nth-child(n+4) {
+        display: none;
+    }
+    #chat-container {
+    display: none;
+  }
+
+    #send-button {
+        padding: 5px;
+    }
+
+}
   </style>
 
 </head>
@@ -213,7 +217,6 @@
       <button id="connectButton">Connect</button>
     </div>
   </div>
-
   <div id="game-content" style="display: none;">
     <div class="container">
       <div class="leaderboard">
@@ -253,7 +256,7 @@
 <script type="module" src="https://cdn.jsdelivr.net/npm/socket.io-client/dist/socket.io.js"></script>
 
 <script type="module">
-
+let currentMessage = null;
 let connectedUser = null;
 const MAX_MESSAGE_LENGTH = 64;
 function truncateMessage(message) {
@@ -425,12 +428,14 @@ return score;
 let dealerCardsVisible = false; // Add a variable to track visibility of dealer's cards
 
 function displayHands(showHiddenCard = false) {
-  // Display Player's hand
-  playerHandElement.innerHTML = `Player's hand: <div class="hand-container">${playerHand.map(card => getCardHTML(card)).join('')}</div>`;
+  // Display Player's hand and total
+  const playerScore = calculateScore(playerHand);
+  playerHandElement.innerHTML = `Player's hand (${playerScore}): <div class="hand-container">${playerHand.map(card => getCardHTML(card)).join('')}</div>`;
 
-  // Display Dealer's hand
+  // Display Dealer's hand and total
+  const dealerScore = calculateScore(dealerHand);
   if (showHiddenCard || dealerCardsVisible) {
-    dealerHandElement.innerHTML = `Dealer's hand: <div class="hand-container">${dealerHand.map(card => getCardHTML(card)).join('')}</div>`;
+    dealerHandElement.innerHTML = `Dealer's hand (${dealerScore}): <div class="hand-container">${dealerHand.map(card => getCardHTML(card)).join('')}</div>`;
     
     // Update the flag only if showHiddenCard is true (player stands or busts)
     if (showHiddenCard) {
@@ -438,7 +443,7 @@ function displayHands(showHiddenCard = false) {
     }
   } else {
     // Display both hidden and visible cards for the dealer at the start of each hand
-    dealerHandElement.innerHTML = `Dealer's hand: 
+    dealerHandElement.innerHTML = `Dealer's hand (${calculateScore([dealerHand[1]])}): 
       <div class="hand-container">
         ${getCardHTML(dealerHand[0], true)}
         ${getCardHTML(dealerHand[1])}
@@ -603,15 +608,14 @@ if (roundStarted && playerBalance >= playerBet) {
 }
 }
 
-
-
 function endRound(result = '', payoutMultiplier = 2) {
   if (roundStarted) {
     displayHands(true); // Show the hidden card
 
     if (payoutMultiplier > 0) {
-      playerBalance += playerBet * payoutMultiplier;
-      // Update the player's balance and leaderboard
+      const amountWon = playerBet * payoutMultiplier;
+      playerBalance += amountWon;
+      result += ` You ${payoutMultiplier > 1 ? 'won' : 'lost'} $${amountWon}.`;
     }
     updatePlayerBalanceAndLeaderboard(playerBalance);
     startButton.disabled = false;
