@@ -179,7 +179,8 @@
     @media screen and (max-width: 600px) {
     .container {
         padding: 10px;
-        position: relative; 
+        position: relative;
+        overflow-y: auto;
     }
     .leaderboard {
         margin-top: 120px;
@@ -191,8 +192,7 @@
         max-width: calc(100% - 20px);
         margin-bottom: 10px; 
         z-index: 1;
-        min-height: 225px;
-        overflow-y: auto;
+        min-height: 150px;
     }
     #leaderboard-list li:nth-child(n+4) {
         display: none;
