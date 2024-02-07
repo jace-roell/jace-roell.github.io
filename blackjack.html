@@ -179,34 +179,37 @@
     @media screen and (max-width: 600px) {
     .container {
         padding: 10px;
-        position: relative; /* Add relative positioning to the container */
+        position: relative; 
     }
     .leaderboard {
-        position: static; /* Change position to static to allow flow in the document */
+        margin-top: 120px;
+        position: static; 
         background-color: #005335;
         padding: 15px;
         border-radius: 10px;
-        width: 100%; /* Adjust width to fill the container */
-        max-width: calc(100% - 20px); /* Adjust max-width to fit within the container */
-        margin-bottom: 10px; /* Add margin-bottom to create space below the leaderboard */
-        z-index: 1; /* Ensure the leaderboard stays above other content */
+        width: 100%; 
+        max-width: calc(100% - 20px);
+        margin-bottom: 10px; 
+        z-index: 1;
+        min-height: 150px;
+        overflow-y: auto;
     }
     #leaderboard-list li:nth-child(n+4) {
         display: none;
     }
     #chat-container {
-    position: static; /* Revert to static positioning */
+    position: static; 
     background-color: #333;
     padding: 10px;
     border-radius: 10px;
-    width: 100%; /* Adjust width to fill the container */
-    height: 50%; /* Adjust height to a percentage of the viewport height */
+    width: 100%;
+    height: 50%;
     color: white;
     overflow-y: auto;
     min-height: 200px;
   }
     #chat-messages {
-        max-height: calc(100vh - 460px); /* Adjust max-height to fill remaining space */
+        max-height: calc(100vh - 460px);
         overflow-y: auto;
         white-space: pre-wrap;
         word-wrap: break-word;
