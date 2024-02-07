@@ -336,7 +336,7 @@ const App = () => {
               </div>
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/java.png")} alt="Java Icon" />
+                  <img src={require("./images/java2.png")} alt="Java Icon" />
                   <p>Java</p>
                 </div>
               </div>

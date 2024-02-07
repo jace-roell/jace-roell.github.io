@@ -200,3 +200,83 @@ canvas {
   flex: 33.33%;
   padding: 5px;
 }
+@media (max-width: 768px) { /* Adjust the max-width as needed for your mobile layout */
+  #experience {
+    padding: 20px;
+  }
+
+  .experience-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .experience-item img {
+    width: 80px; /* Decrease image size for smaller screens */
+    margin-right: 0; /* Remove margin for images */
+    margin-top: 10px;
+    margin-bottom: 10px; /* Add space between image and text */
+  }
+
+  .experience-item h3 {
+    font-size: 20px; /* Decrease heading font size for smaller screens */
+    margin-right: 0; /* Remove margin for headings */
+  }
+
+  .experience-item .bullet-points {
+    margin-top: 10px;
+    text-align: left;
+    font-size: 14px; /* Decrease bullet points font size for smaller screens */
+  }
+  .tabs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #111;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    z-index: 100;
+  }
+
+  /* Mobile-specific styling for education section */
+  #education {
+    padding: 20px; /* Add padding for mobile devices */
+    margin: 0 10px; /* Add margin on both sides */
+  }
+
+  .skills-content-container {
+    flex-direction: column; /* Stack skills sections vertically on smaller screens */
+    align-items: center; /* Center align items */
+    text-align: center; /* Center align text */
+  }
+  
+  .skills-content {
+    width: 100%; /* Set width to 100% */
+    margin: 10px 0; /* Add margin top and bottom */
+    display: flex; /* Use flexbox to align items */
+    flex-wrap: wrap; /* Allow items to wrap to next line if necessary */
+    justify-content: center; /* Center align items horizontally */
+  }
+
+  .icon-container {
+    margin: 10px;
+    width: 120px; /* Set a fixed width for icon containers */
+    text-align: center; /* Center align text */
+  }
+
+  .icon-container img {
+    width: 50px; /* Decrease icon size for smaller screens */
+    height: 50px; /* Ensure uniform sizing for icons */
+  }
+
+  .icon-container p {
+    margin: 5px 0 0; /* Add margin for text below icons */
+  }
+
+  .column {
+    flex: 100%; /* Set column width to 100% */
+    padding: 5px;
+    text-align: center; /* Center align text */
+  }
+}

@@ -82,3 +82,57 @@
 {
     vertical-align:middle;
 }
+@media (max-width: 768px) {
+    .project-entry {
+      display: flex;
+      flex-direction: column; /* Change to column layout for mobile */
+      justify-content: center; /* Center content vertically */
+      padding: 20px;
+      margin-left: 20px; /* Adjust margin for mobile */
+      margin-right: 20px; /* Adjust margin for mobile */
+      overflow: hidden;
+    }
+  
+    .sub-header-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center; /* Center text horizontally */
+    }
+  
+    .project-header {
+      font-size: 32px; /* Adjust font size for mobile */
+    }
+  
+    .project-header h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+  
+    .technologies {
+      font-size: 16px; /* Adjust font size for mobile */
+      color: gray;
+    }
+  
+    .buttons-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px; /* Add margin for separation */
+    }
+  
+    .try-now-btn,
+    .learn-more-btn {
+      padding: 10px 20px; /* Adjust padding for mobile */
+      font-size: 18px; /* Adjust font size for mobile */
+    }
+  
+    .reference-image-container {
+      margin-top: 20px; /* Add margin for separation */
+    }
+  
+    .reference-image {
+      max-width: 100%; /* Adjust image width to fit container */
+      border-radius: 10px;
+    }
+}
