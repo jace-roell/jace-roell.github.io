@@ -195,14 +195,16 @@
         display: none;
     }
     #chat-container {
-        position: static; /* Revert to static positioning */
-        background-color: #333;
-        padding: 10px;
-        border-radius: 10px;
-        width: 100%; /* Adjust width to fill the container */
-        color: white;
-        overflow-y: auto;
-    }
+    position: static; /* Revert to static positioning */
+    background-color: #333;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%; /* Adjust width to fill the container */
+    height: 50%; /* Adjust height to a percentage of the viewport height */
+    color: white;
+    overflow-y: auto;
+    min-height: 200px;
+  }
     #chat-messages {
         max-height: calc(100vh - 460px); /* Adjust max-height to fill remaining space */
         overflow-y: auto;
