@@ -1,21 +1,7 @@
-body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-}
-
 .app {
   background-color: transparent;
   color: #fff;
   overflow-x: hidden;
-}
-
-.welcome {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
-  position: relative;
 }
 
 .tabs {
@@ -43,22 +29,20 @@ body {
 }
 
 .tab.active {
-  background: linear-gradient(90deg, #424bad,#cc3131);
+  background: linear-gradient(90deg, #424bad, #cc3131);
 }
 
 #welcome-no-highlight {
   background-color: transparent;
-  min-height: 50vh !important; 
+  min-height: 50vh !important;
 }
-
 
 .welcome-container {
   position: relative;
   overflow: hidden;
   background-color: transparent;
 }
-#education
-{
+#education {
   height: 100vh;
 }
 .welcome {
@@ -69,18 +53,41 @@ body {
   justify-content: center;
   position: relative;
   background-color: transparent;
+  width: 100%;
+}
+
+.welcome-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  z-index: 1;
+}
+
+.welcome-intro h1 {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: inherit;
+}
+
+.welcome .game-intro {
+  margin-top: 3rem;
 }
 
 .view-portfolio-btn {
   margin-top: 20px;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background: linear-gradient(90deg, #424bad,#cc3131);
+  background: linear-gradient(90deg, #424bad, #cc3131);
   color: #fff;
   transition: background-color 0.3s, transform 0.3s;
 }
@@ -106,7 +113,7 @@ canvas {
   max-width: 800px;
   margin: 0 auto;
 }
-.header-background-blue{
+.header-background-blue {
   background: #424bad;
   border-radius: 15px;
   padding: 20px;
@@ -114,7 +121,7 @@ canvas {
   align-items: center;
   justify-content: center;
 }
-.header-background-red{
+.header-background-red {
   background: #cc3131;
   border-radius: 15px;
   padding: 20px;
@@ -158,7 +165,7 @@ canvas {
 
 .experience-item h3 {
   font-size: 24px;
-  margin-right: auto; 
+  margin-right: auto;
 }
 
 .experience-item .bullet-points {
@@ -200,7 +207,7 @@ canvas {
   flex: 33.33%;
   padding: 5px;
 }
-@media (max-width: 768px) { /* Adjust the max-width as needed for your mobile layout */
+@media (max-width: 768px) {
   #experience {
     padding: 20px;
   }
@@ -211,21 +218,21 @@ canvas {
   }
 
   .experience-item img {
-    width: 80px; /* Decrease image size for smaller screens */
-    margin-right: 0; /* Remove margin for images */
+    width: 80px;
+    margin-right: 0;
     margin-top: 10px;
-    margin-bottom: 10px; /* Add space between image and text */
+    margin-bottom: 10px;
   }
 
   .experience-item h3 {
-    font-size: 20px; /* Decrease heading font size for smaller screens */
-    margin-right: 0; /* Remove margin for headings */
+    font-size: 20px;
+    margin-right: 0;
   }
 
   .experience-item .bullet-points {
     margin-top: 10px;
     text-align: left;
-    font-size: 14px; /* Decrease bullet points font size for smaller screens */
+    font-size: 14px;
   }
   .tabs {
     position: fixed;
@@ -239,44 +246,43 @@ canvas {
     z-index: 100;
   }
 
-  /* Mobile-specific styling for education section */
   #education {
-    padding: 20px; /* Add padding for mobile devices */
-    margin: 0 10px; /* Add margin on both sides */
+    padding: 20px;
+    margin: 0 10px;
   }
 
   .skills-content-container {
-    flex-direction: column; /* Stack skills sections vertically on smaller screens */
-    align-items: center; /* Center align items */
-    text-align: center; /* Center align text */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
-  
+
   .skills-content {
-    width: 100%; /* Set width to 100% */
-    margin: 10px 0; /* Add margin top and bottom */
-    display: flex; /* Use flexbox to align items */
-    flex-wrap: wrap; /* Allow items to wrap to next line if necessary */
-    justify-content: center; /* Center align items horizontally */
+    width: 100%;
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .icon-container {
     margin: 10px;
-    width: 120px; /* Set a fixed width for icon containers */
-    text-align: center; /* Center align text */
+    width: 120px;
+    text-align: center;
   }
 
   .icon-container img {
-    width: 50px; /* Decrease icon size for smaller screens */
-    height: 50px; /* Ensure uniform sizing for icons */
+    width: 50px;
+    height: 50px;
   }
 
   .icon-container p {
-    margin: 5px 0 0; /* Add margin for text below icons */
+    margin: 5px 0 0;
   }
 
   .column {
-    flex: 100%; /* Set column width to 100% */
+    flex: 100%;
     padding: 5px;
-    text-align: center; /* Center align text */
+    text-align: center;
   }
 }

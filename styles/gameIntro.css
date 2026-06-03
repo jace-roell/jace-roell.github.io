@@ -1,0 +1,221 @@
+.game-intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 3vw, 32px);
+  width: 100%;
+  max-width: 920px;
+  padding: 24px;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.game-panel {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.25);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.game-panel:focus-within {
+  border-color: rgba(66, 75, 173, 0.6);
+  box-shadow: 0 0 0 1px rgba(204, 49, 49, 0.25);
+}
+
+/* Tic-tac-toe */
+.ttt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  width: 100%;
+  max-width: 140px;
+  aspect-ratio: 1;
+}
+
+.ttt-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.ttt-cell:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.ttt-cell:disabled {
+  cursor: default;
+}
+
+.ttt-cell--x::after,
+.ttt-cell--o::after {
+  content: "";
+  display: block;
+  width: 55%;
+  height: 55%;
+  margin: auto;
+  border-radius: 50%;
+}
+
+.ttt-cell--x::after {
+  background: #424bad;
+}
+
+.ttt-cell--o::after {
+  background: #cc3131;
+}
+
+/* Connect 4 */
+.c4-board {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 4px;
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 7 / 6;
+}
+
+.c4-slot {
+  aspect-ratio: 1;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.c4-slot:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.c4-slot:disabled {
+  cursor: default;
+}
+
+.c4-slot--x,
+.c4-slot--o {
+  pointer-events: none;
+}
+
+.c4-slot--x {
+  background: #424bad;
+}
+
+.c4-slot--o {
+  background: #cc3131;
+}
+
+/* Minesweeper (8×8, 10 mines — easy) */
+.ms-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 2px;
+  width: 100%;
+  max-width: 168px;
+}
+
+.ms-cell {
+  aspect-ratio: 1;
+  padding: 0;
+  border: none;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.ms-cell:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.ms-cell:disabled {
+  cursor: default;
+}
+
+.ms-cell--revealed {
+  background: rgba(255, 255, 255, 0.05);
+  cursor: default;
+}
+
+.ms-cell--flagged {
+  background: rgba(66, 75, 173, 0.45);
+}
+
+.ms-cell--flagged::after {
+  content: "";
+  display: block;
+  width: 40%;
+  height: 40%;
+  margin: auto;
+  background: #cc3131;
+  border-radius: 1px;
+  transform: rotate(45deg);
+}
+
+.ms-cell--mine,
+.ms-cell--boom {
+  background: #cc3131;
+}
+
+.ms-cell--won.ms-cell--revealed:not(.ms-cell--mine) {
+  background: rgba(66, 75, 173, 0.25);
+}
+
+.ms-cell--n1 {
+  color: #7eb6ff;
+}
+.ms-cell--n2 {
+  color: #6ddf8a;
+}
+.ms-cell--n3 {
+  color: #ff7a7a;
+}
+.ms-cell--n4 {
+  color: #b07aff;
+}
+.ms-cell--n5 {
+  color: #ffb347;
+}
+.ms-cell--n6 {
+  color: #5ee6e6;
+}
+.ms-cell--n7 {
+  color: #f5f5f5;
+}
+.ms-cell--n8 {
+  color: #c0c0c0;
+}
+
+@media (max-width: 640px) {
+  .game-intro {
+    flex-direction: column;
+    max-width: 220px;
+  }
+
+  .game-panel {
+    width: 100%;
+  }
+
+  .c4-board {
+    max-width: 100%;
+  }
+}
+

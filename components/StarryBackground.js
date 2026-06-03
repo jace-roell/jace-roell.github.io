@@ -1,13 +1,15 @@
-import React, { useRef, useEffect } from 'react';
+"use client";
 
-//StarryBackground comes from https://codepen.io/LeonGr/pen/QWmRyw with some minor modifications to color, fps, etc.
+import { useRef, useEffect } from "react";
 
-const StarryBackground = () => {
+// StarryBackground from https://codepen.io/LeonGr/pen/QWmRyw with minor color/fps tweaks.
+
+export default function StarryBackground() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -21,18 +23,18 @@ const StarryBackground = () => {
         y: Math.random() * canvas.height,
         radius: Math.random(),
         vx: Math.floor(Math.random() * 10) - 5,
-        vy: Math.floor(Math.random() * 10) - 5
+        vy: Math.floor(Math.random() * 10) - 5,
       });
     }
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.globalCompositeOperation = 'lighter';
+      ctx.globalCompositeOperation = "lighter";
 
       for (let i = 0, x = stars.length; i < x; i++) {
         const s = stars[i];
 
-        ctx.fillStyle = Math.random() > 0.5 ? '#424bad' : '#cc3131'
+        ctx.fillStyle = Math.random() > 0.5 ? "#424bad" : "#cc3131";
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.radius, 0, 2 * Math.PI);
         ctx.fill();
@@ -51,19 +53,17 @@ const StarryBackground = () => {
       }
     };
 
+    let frameId;
     const tick = () => {
       draw();
       update();
-      requestAnimationFrame(tick);
+      frameId = requestAnimationFrame(tick);
     };
 
     tick();
 
-    // Cleanup
-    return () => cancelAnimationFrame(tick);
-  }, []); // Empty dependency array ensures useEffect runs once on mount
+    return () => cancelAnimationFrame(frameId);
+  }, []);
 
-  return <canvas ref={canvasRef} style={{ background: '#111' }} />;
-};
-
-export default StarryBackground;
+  return <canvas ref={canvasRef} style={{ background: "#111" }} />;
+}

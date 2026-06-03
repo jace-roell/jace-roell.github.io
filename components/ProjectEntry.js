@@ -1,7 +1,13 @@
-import React from 'react';
-import './projectEntry.css';
+import "../styles/projectEntry.css";
 
-const ProjectEntry = ({ imageUrl, name, description, learnMoreHref, liveAppHref, technologies }) => {
+export default function ProjectEntry({
+  imageUrl,
+  name,
+  description,
+  learnMoreHref,
+  liveAppHref,
+  technologies,
+}) {
   return (
     <div className="project-entry">
       <div className="sub-header-container">
@@ -42,6 +48,4 @@ const ProjectEntry = ({ imageUrl, name, description, learnMoreHref, liveAppHref,
       </div>
     </div>
   );
-};
-
-export default ProjectEntry;
+}

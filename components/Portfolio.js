@@ -1,26 +1,28 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
-import StarryBackground from "./starryBackground";
-import ProjectEntry from "./projectEntry";
-import WelcomeIcons from "./welcomeIcons";
+"use client";
+
+import { useState, useEffect } from "react";
+import "../styles/portfolio.css";
+import StarryBackground from "./StarryBackground";
+import GameIntro from "./GameIntro";
+import WelcomeIcons from "./WelcomeIcons";
+import ProjectEntry from "./ProjectEntry";
+import Footer from "./Footer";
 import {
   FaGraduationCap,
   FaBriefcase,
   FaCode,
   FaTools,
-  FaEnvelope,
   FaArrowDown,
 } from "react-icons/fa";
 
 const TabLink = ({ sectionId, currentSection, scrollToSection, children }) => {
   const isActive = currentSection === sectionId;
 
-  const handleClick = () => {
-    scrollToSection(sectionId);
-  };
-
   return (
-    <div className={`tab ${isActive ? "active" : ""}`} onClick={handleClick}>
+    <div
+      className={`tab ${isActive ? "active" : ""}`}
+      onClick={() => scrollToSection(sectionId)}
+    >
       {children}
     </div>
   );
@@ -33,55 +35,31 @@ const BulletPoints = ({ points }) => (
     ))}
   </ul>
 );
-const Footer = () => {
-  const iconStyle = {
-    width: "30px",
-    height: "30px",
-    marginRight: "10px",
-  };
 
-  return (
-    <footer style={{ backgroundColor: "#333", padding: "20px 0", textAlign: "center" }} className="footer">
-      <div className="footer-icons">
-        <a href="https://github.com/jace-roell" target="_blank" rel="noopener noreferrer">
-          <img style={iconStyle} src={require("./images/github.png")} alt="GitHub" />
-        </a>
-        <a href="https://www.linkedin.com/in/jace-roell" target="_blank" rel="noopener noreferrer">
-          <img style={iconStyle} src={require("./images/linkedin.png")} alt="LinkedIn" />
-        </a>
-        <a href="mailto:jace.roell@hotmail.com">
-          <img style={iconStyle} src={require("./images/mail.png")} alt="Email" />
-        </a>
-      </div>
-    </footer>
-  );
-};
+const projectsData = [
+  {
+    imageUrl: "/images/blackjackExample.png",
+    name: "Live Blackjack Game",
+    description:
+      "Blackjack game to allow for live competition between users to achieve the highest balance",
+    learnMoreHref: "https://github.com/jace-roell/online-blackjack",
+    liveAppHref: "/blackjack.html",
+    technologies: "HTML, CSS, JavaScript, Socket.io, Heroku",
+  },
+  {
+    imageUrl: "/images/starlinkExample.PNG",
+    name: "Starlink Satellite Tracker",
+    description:
+      "Leverages Google and n2yo API to display visible passes of starlink satellites within your area",
+    learnMoreHref:
+      "https://github.com/jace-roell/https://github.com/jace-roell/starlink-satellite-tracker-public",
+    liveAppHref: "",
+    technologies: "React.js, JavaScript, HTML, CSS, Python",
+  },
+];
 
-
-const App = () => {
+export default function Portfolio() {
   const [currentSection, setCurrentSection] = useState("");
-
-  const projectsData = [
-    {
-      imageUrl: require("./images/blackjackExample.png"),
-      name: "Live Blackjack Game",
-      description:
-        "Blackjack game to allow for live competition between users to achieve the highest balance",
-      learnMoreHref: "https://github.com/jace-roell/online-blackjack",
-      liveAppHref: "./blackjack.html",
-      technologies: "HTML, CSS, JavaScript, Socket.io, Heroku",
-    },
-    {
-      imageUrl: require("./images/starlinkExample.PNG"),
-      name: "Starlink Satellite Tracker",
-      description:
-        "Leverages Google and n2yo API to display visible passes of starlink satellites within your area",
-      learnMoreHref:
-        "https://github.com/jace-roell/https://github.com/jace-roell/starlink-satellite-tracker-public",
-      liveAppHref: "",
-      technologies: "React.js, JavaScript, HTML, CSS, Python",
-    },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -109,19 +87,23 @@ const App = () => {
   };
 
   return (
-    
     <div className="app">
       <section id="welcome-no-highlight" className="content-section">
         <div className="welcome-container">
           <StarryBackground />
           <div className="welcome">
-            <h1>Hello, my name is Jace Roell <WelcomeIcons /></h1>
-            <button
-              className="view-portfolio-btn"
-              onClick={() => scrollToSection("experience")}
-            >
-              View My Portfolio <FaArrowDown />
-            </button>
+            <div className="welcome-intro">
+              <h1>
+                Hello, my name is Jace Roell <WelcomeIcons />
+              </h1>
+              <button
+                className="view-portfolio-btn"
+                onClick={() => scrollToSection("experience")}
+              >
+                See My Portfolio <FaArrowDown />
+              </button>
+            </div>
+            <GameIntro />
           </div>
         </div>
       </section>
@@ -167,8 +149,8 @@ const App = () => {
 
           <div className="experience-item">
             <img
-              src={require("./images/ussRemovedBackground.png")}
-              alt="image not found"
+              src="/images/ussRemovedBackground.png"
+              alt="United States Steel Corporation"
             />
             <div>
               <div className="experience-header">
@@ -178,7 +160,6 @@ const App = () => {
                 </p>
               </div>
               <BulletPoints
-                className="bullet-points"
                 points={[
                   "Collaborated with cross-functional teams to translate project requirements into seamless web solutions.",
                   "Proficient in tackling complex web development challenges using a combination of critical thinking, analytical skills, and a deep understanding of technologies like JavaScript, TypeScript, and C#.",
@@ -191,7 +172,7 @@ const App = () => {
           </div>
 
           <div className="experience-item">
-            <img src={require("./images/rmu.png")} alt="image not found" />
+            <img src="/images/rmu.png" alt="Robert Morris University" />
             <div>
               <div className="experience-header">
                 <h3>Laser Welding Research Intern</h3>
@@ -200,7 +181,6 @@ const App = () => {
                 </p>
               </div>
               <BulletPoints
-                className="bullet-points"
                 points={[
                   "Collaborated with cross-functional teams to efficiently achieve project objectives.",
                   "Demonstrated proficiency in NI LabVIEW for system development and optimization.",
@@ -213,8 +193,8 @@ const App = () => {
 
           <div className="experience-item">
             <img
-              src={require("./images/dlcDarkModeRemovedBackground.png")}
-              alt="image not found"
+              src="/images/dlcDarkModeRemovedBackground.png"
+              alt="Duquesne Light Company"
             />
             <div>
               <div className="experience-header">
@@ -225,7 +205,6 @@ const App = () => {
               </div>
 
               <BulletPoints
-                className="bullet-points"
                 points={[
                   "Reimaged and configured over 500 PCs to the company standard so they could be distributed to employees.",
                   "Repaired, decommissioned, or updated various Windows OS PCs.",
@@ -262,24 +241,24 @@ const App = () => {
           </div>
         </div>
         <div className="skills-content-container">
-        <div className="skills-content">
-        <h2>Frameworks</h2>
+          <div className="skills-content">
+            <h2>Frameworks</h2>
             <div className="row">
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/react.png")} alt="React Icon" />
+                  <img src="/images/react.png" alt="React Icon" />
                   <p>React.js</p>
                 </div>
               </div>
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/angular.png")} alt="Angular Icon" />
+                  <img src="/images/angular.png" alt="Angular Icon" />
                   <p>Angular.js</p>
                 </div>
               </div>
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/dotNet.png")} alt="dotNet Icon" />
+                  <img src="/images/dotNet.png" alt="dotNet Icon" />
                   <p>ASP.Net MVC</p>
                 </div>
               </div>
@@ -290,19 +269,19 @@ const App = () => {
             <div className="row">
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/html.png")} alt="HTML Icon" />
+                  <img src="/images/html.png" alt="HTML Icon" />
                   <p>HTML</p>
                 </div>
               </div>
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/css.png")} alt="CSS Icon" />
+                  <img src="/images/css.png" alt="CSS Icon" />
                   <p>CSS</p>
                 </div>
               </div>
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/js.png")} alt="JavaScript Icon" />
+                  <img src="/images/js.png" alt="JavaScript Icon" />
                   <p>JavaScript</p>
                 </div>
               </div>
@@ -310,19 +289,19 @@ const App = () => {
             <div className="row">
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/ts.png")} alt="TS Icon" />
+                  <img src="/images/ts.png" alt="TS Icon" />
                   <p>TypeScript</p>
                 </div>
               </div>
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/c.png")} alt="C Icon" />
+                  <img src="/images/c.png" alt="C Icon" />
                   <p>C</p>
                 </div>
               </div>
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/cpp.png")} alt="C++ Icon" />
+                  <img src="/images/cpp.png" alt="C++ Icon" />
                   <p>C++</p>
                 </div>
               </div>
@@ -330,42 +309,42 @@ const App = () => {
             <div className="row">
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/cSharp.png")} alt="C# Icon" />
+                  <img src="/images/cSharp.png" alt="C# Icon" />
                   <p>C#</p>
                 </div>
               </div>
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/java2.png")} alt="Java Icon" />
+                  <img src="/images/java2.png" alt="Java Icon" />
                   <p>Java</p>
                 </div>
               </div>
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/sql.png")} alt="SQL Dev Icon" />
+                  <img src="/images/sql.png" alt="SQL Dev Icon" />
                   <p>SQL Developer</p>
                 </div>
               </div>
             </div>
           </div>
           <div className="skills-content">
-          <h2>Tools/Libraries</h2>
+            <h2>Tools/Libraries</h2>
             <div className="row">
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/node.png")} alt="Node.js Icon" />
+                  <img src="/images/node.png" alt="Node.js Icon" />
                   <p>Node.js</p>
                 </div>
               </div>
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/heroku.png")} alt="Heroku Icon" />
+                  <img src="/images/heroku.png" alt="Heroku Icon" />
                   <p>Heroku</p>
                 </div>
               </div>
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/knockout.png")} alt="Knockout Icon" />
+                  <img src="/images/knockout.png" alt="Knockout Icon" />
                   <p>Knockout.js</p>
                 </div>
               </div>
@@ -373,19 +352,19 @@ const App = () => {
             <div className="row">
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/ado.webp")} alt="Azure Dev Ops Icon" />
+                  <img src="/images/ado.webp" alt="Azure Dev Ops Icon" />
                   <p>Azure Dev Ops</p>
                 </div>
               </div>
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/vs.png")} alt="Visual Studio Icon" />
+                  <img src="/images/vs.png" alt="Visual Studio Icon" />
                   <p>Visual Studio</p>
                 </div>
               </div>
               <div className="icon-container">
                 <div className="column">
-                  <img src={require("./images/swagger.png")} alt="Swagger Icon" />
+                  <img src="/images/swagger.png" alt="Swagger Icon" />
                   <p>Swagger</p>
                 </div>
               </div>
@@ -414,7 +393,7 @@ const App = () => {
             <p className="gpa-info">
               <strong>GPA:</strong> 3.75
             </p>
-            <br></br>
+            <br />
             <h3>South Park High School, South Park, PA</h3>
             <p className="graduation-info">
               <strong>Graduation Date:</strong> May 2020
@@ -428,6 +407,4 @@ const App = () => {
       <Footer />
     </div>
   );
-};
-
-export default App;
+}
