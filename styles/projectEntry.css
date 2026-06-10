@@ -1,13 +1,28 @@
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
 .project-entry {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 20px;
-  margin-left: 100px;
-  margin-right: 100px;
-  align-items: center;
-  overflow: hidden;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  margin: 0;
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(27, 54, 93, 0.12);
+  box-shadow: 0 2px 8px rgba(27, 54, 93, 0.06);
+  height: 100%;
+}
+
+.project-entry--no-image .sub-header-container {
+  max-width: none;
 }
 
 .sub-header-container {
@@ -15,125 +30,108 @@
   flex-direction: column;
   flex: 1;
   align-items: center;
+  gap: var(--space-xs);
+  text-align: center;
 }
 
 .project-header {
   text-align: center;
-  font-size: 48px;
 }
 
 .project-header h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 1.15rem;
+  margin: 0 0 2px;
+  color: var(--color-navy);
+}
+
+.project-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-text);
+  line-height: 1.45;
 }
 
 .technologies {
-  font-size: 18px;
-  color: gray;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
   text-align: center;
+  font-style: italic;
+  margin: 0;
 }
 
 .buttons-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  margin-top: auto;
+  padding-top: var(--space-xs);
 }
 
 .try-now-btn,
 .learn-more-btn {
-  margin-bottom: 10px;
-  padding: 12px 20px;
+  padding: 5px 12px;
   background-color: transparent;
-  color: #fff;
-  text-decoration: underline;
-  transition: background 0.3s, color 0.3s;
-  white-space: nowrap;
-  font-size: 32px;
+  color: var(--color-navy);
+  text-decoration: none;
+  border: 1.5px solid var(--color-navy);
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 600;
   text-align: center;
+  transition: background 0.25s, color 0.25s, transform 0.2s;
+  white-space: nowrap;
 }
 
 .try-now-btn:hover {
-  color: #fff;
-  background-color: #424bad;
+  background-color: var(--color-navy);
+  color: var(--color-white);
+  transform: translateY(-1px);
 }
 
 .learn-more-btn:hover {
-  background-color: #ad2929;
-  color: #fff;
+  background-color: var(--color-orange);
+  border-color: var(--color-orange);
+  color: var(--color-white);
+  transform: translateY(-1px);
 }
 
 .reference-image-container {
+  width: 100%;
   flex-shrink: 0;
-  margin-left: 20px;
 }
 
 .reference-image {
-  max-width: 1000px;
-  max-height: 100%;
-  border-radius: 10px;
-  margin-top: 20px;
+  width: 100%;
+  max-height: 120px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(27, 54, 93, 0.12);
+  filter: sepia(0.15) contrast(0.94) saturate(0.9);
 }
 
 .project-info {
   flex: 1;
-  align-content: center;
-}
-
-.vertical-align {
-  vertical-align: middle;
 }
 
 @media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    padding: 0 var(--space-sm);
+    gap: var(--space-sm);
+  }
+
   .project-entry {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    overflow: hidden;
-  }
-
-  .sub-header-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .project-header {
-    font-size: 32px;
+    padding: var(--space-sm);
   }
 
   .project-header h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 1.05rem;
   }
 
-  .technologies {
-    font-size: 16px;
-    color: gray;
-  }
-
-  .buttons-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-  }
-
-  .try-now-btn,
-  .learn-more-btn {
-    padding: 10px 20px;
-    font-size: 18px;
-  }
-
-  .reference-image-container {
-    margin-top: 20px;
-  }
-
-  .reference-image {
-    max-width: 100%;
-    border-radius: 10px;
+  .project-info p {
+    font-size: 0.8rem;
   }
 }

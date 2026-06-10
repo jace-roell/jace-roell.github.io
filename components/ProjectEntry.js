@@ -8,8 +8,19 @@ export default function ProjectEntry({
   liveAppHref,
   technologies,
 }) {
+  const hasImage = Boolean(imageUrl);
+
   return (
-    <div className="project-entry">
+    <div className={`project-entry${hasImage ? "" : " project-entry--no-image"}`}>
+      {hasImage && (
+        <div className="reference-image-container">
+          <img
+            src={imageUrl}
+            alt={`Image for ${name}`}
+            className="reference-image"
+          />
+        </div>
+      )}
       <div className="sub-header-container">
         <div className="project-header">
           <h2>{name}</h2>
@@ -38,13 +49,6 @@ export default function ProjectEntry({
             Learn more
           </a>
         </div>
-      </div>
-      <div className="reference-image-container">
-        <img
-          src={imageUrl}
-          alt={`Image for ${name}`}
-          className="reference-image"
-        />
       </div>
     </div>
   );

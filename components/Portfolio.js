@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import "../styles/portfolio.css";
-import StarryBackground from "./StarryBackground";
+import UkiyoBackground from "./UkiyoBackground";
 import GameIntro from "./GameIntro";
 import WelcomeIcons from "./WelcomeIcons";
 import ProjectEntry from "./ProjectEntry";
@@ -56,7 +56,87 @@ const projectsData = [
     liveAppHref: "",
     technologies: "React.js, JavaScript, HTML, CSS, Python",
   },
+  {
+    imageUrl: "",
+    name: "Zowe CLI",
+    description:
+      "Open-source command-line interface for interacting with z/OS and the Zowe ecosystem. Active contributor.",
+    learnMoreHref: "https://github.com/zowe/zowe-cli",
+    liveAppHref: "",
+    technologies: "TypeScript, Node.js, z/OS",
+  },
+  {
+    imageUrl: "",
+    name: "Zowe Explorer for VS Code",
+    description:
+      "VS Code extension for mainframe development — data sets, USS files, jobs, and more. Active contributor.",
+    learnMoreHref: "https://github.com/zowe/vscode-extension-for-zowe",
+    liveAppHref: "",
+    technologies: "TypeScript, VS Code API, z/OS",
+  },
+  {
+    imageUrl: "",
+    name: "Zowex",
+    description:
+      "Native C++ backend and protocol for z/OS mainframe operations over SSH. Active contributor to the CLI plug-in and VS Code integration.",
+    learnMoreHref: "https://github.com/zowe/zowex",
+    liveAppHref: "",
+    technologies: "C++, z/OS, JSON-RPC, SSH",
+  },
 ];
+
+const skillsData = [
+  {
+    category: "Frameworks",
+    items: [
+      { name: "React.js", icon: "/images/react.png" },
+      { name: "Next.js", icon: "/images/nextjs.svg" },
+      { name: "Angular.js", icon: "/images/angular.png" },
+      { name: "ASP.Net", icon: "/images/dotNet.png" },
+    ],
+  },
+  {
+    category: "Languages",
+    items: [
+      { name: "HTML", icon: "/images/html.png" },
+      { name: "CSS", icon: "/images/css.png" },
+      { name: "JavaScript", icon: "/images/js.png" },
+      { name: "TypeScript", icon: "/images/ts.png" },
+      { name: "C++", icon: "/images/cpp.png" },
+      { name: "C#", icon: "/images/cSharp.png" },
+      { name: "Java", icon: "/images/java2.png" },
+      { name: "SQL", icon: "/images/sql.png" },
+    ],
+  },
+  {
+    category: "Tools/Libraries",
+    items: [
+      { name: "Node.js", icon: "/images/node.png" },
+      { name: "Heroku", icon: "/images/heroku.png" },
+      { name: "Knockout.js", icon: "/images/knockout.png" },
+      { name: "Azure Dev Ops", icon: "/images/ado.webp" },
+      { name: "Visual Studio", icon: "/images/vs.png" },
+      { name: "VS Code", icon: "/images/vscode.svg" },
+      { name: "Swagger", icon: "/images/swagger.png" },
+    ],
+  },
+];
+
+const SkillCategory = ({ category, items }) => (
+  <div className="skills-category">
+    <h3 className="skills-category-title">{category}</h3>
+    <div className="skills-items">
+      {items.map((skill) => (
+        <div className="skill-item" key={skill.name}>
+          <div className="skill-icon">
+            <img src={skill.icon} alt={`${skill.name} icon`} />
+          </div>
+          <span className="skill-name">{skill.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 export default function Portfolio() {
   const [currentSection, setCurrentSection] = useState("");
@@ -88,26 +168,7 @@ export default function Portfolio() {
 
   return (
     <div className="app">
-      <section id="welcome-no-highlight" className="content-section">
-        <div className="welcome-container">
-          <StarryBackground />
-          <div className="welcome">
-            <div className="welcome-intro">
-              <h1>
-                Hello, my name is Jace Roell <WelcomeIcons />
-              </h1>
-              <button
-                className="view-portfolio-btn"
-                onClick={() => scrollToSection("experience")}
-              >
-                See My Portfolio <FaArrowDown />
-              </button>
-            </div>
-            <GameIntro />
-          </div>
-        </div>
-      </section>
-      <div className="tabs">
+      <nav className="tabs" aria-label="Portfolio sections">
         <TabLink
           sectionId="experience"
           currentSection={currentSection}
@@ -136,12 +197,41 @@ export default function Portfolio() {
         >
           <FaGraduationCap /> Education
         </TabLink>
-      </div>
+      </nav>
+
+      <section id="welcome-no-highlight" className="content-section">
+        <div className="welcome-container">
+          <UkiyoBackground />
+          <div className="welcome">
+            <div className="welcome-intro">
+              <div className="hero-identity">
+                <div className="hero-sun" aria-hidden="true" />
+                <div className="hero-identity-content">
+                  <h1>
+                    <span className="hero-greeting">Hello, my name is</span>
+                    <span className="hero-name">Jace Roell</span>
+                  </h1>
+                  <WelcomeIcons />
+                </div>
+              </div>
+              <button
+                className="view-portfolio-btn"
+                onClick={() => scrollToSection("experience")}
+              >
+                See My Portfolio <FaArrowDown />
+              </button>
+            </div>
+            <div className="hero-games">
+              <GameIntro />
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section id="experience" className="content-section">
         <div className="header-container">
           <div className="section-header">
-            <div className="header-background-red">
+            <div className="header-background-navy">
               <FaBriefcase className="icon" />
               <h2>Experience</h2>
             </div>
@@ -193,7 +283,7 @@ export default function Portfolio() {
 
           <div className="experience-item">
             <img
-              src="/images/dlcDarkModeRemovedBackground.png"
+              src="/images/dlc.jpg"
               alt="Duquesne Light Company"
             />
             <div>
@@ -220,187 +310,67 @@ export default function Portfolio() {
       <section id="projects" className="content-section">
         <div className="header-container">
           <div className="section-header">
-            <div className="header-background-blue">
+            <div className="header-background-orange">
               <FaCode className="icon" />
               <h2>Projects</h2>
             </div>
           </div>
         </div>
-        {projectsData.map((project, index) => (
-          <ProjectEntry key={index} {...project} />
-        ))}
+        <div className="projects-grid">
+          {projectsData.map((project, index) => (
+            <ProjectEntry key={index} {...project} />
+          ))}
+        </div>
       </section>
 
       <section id="skills" className="content-section">
         <div className="header-container">
           <div className="section-header">
-            <div className="header-background-red">
+            <div className="header-background-navy">
               <FaTools className="icon" />
               <h2>Skills</h2>
             </div>
           </div>
         </div>
-        <div className="skills-content-container">
-          <div className="skills-content">
-            <h2>Frameworks</h2>
-            <div className="row">
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/react.png" alt="React Icon" />
-                  <p>React.js</p>
-                </div>
-              </div>
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/angular.png" alt="Angular Icon" />
-                  <p>Angular.js</p>
-                </div>
-              </div>
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/dotNet.png" alt="dotNet Icon" />
-                  <p>ASP.Net MVC</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="skills-content">
-            <h2>Languages</h2>
-            <div className="row">
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/html.png" alt="HTML Icon" />
-                  <p>HTML</p>
-                </div>
-              </div>
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/css.png" alt="CSS Icon" />
-                  <p>CSS</p>
-                </div>
-              </div>
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/js.png" alt="JavaScript Icon" />
-                  <p>JavaScript</p>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/ts.png" alt="TS Icon" />
-                  <p>TypeScript</p>
-                </div>
-              </div>
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/c.png" alt="C Icon" />
-                  <p>C</p>
-                </div>
-              </div>
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/cpp.png" alt="C++ Icon" />
-                  <p>C++</p>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/cSharp.png" alt="C# Icon" />
-                  <p>C#</p>
-                </div>
-              </div>
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/java2.png" alt="Java Icon" />
-                  <p>Java</p>
-                </div>
-              </div>
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/sql.png" alt="SQL Dev Icon" />
-                  <p>SQL Developer</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="skills-content">
-            <h2>Tools/Libraries</h2>
-            <div className="row">
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/node.png" alt="Node.js Icon" />
-                  <p>Node.js</p>
-                </div>
-              </div>
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/heroku.png" alt="Heroku Icon" />
-                  <p>Heroku</p>
-                </div>
-              </div>
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/knockout.png" alt="Knockout Icon" />
-                  <p>Knockout.js</p>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/ado.webp" alt="Azure Dev Ops Icon" />
-                  <p>Azure Dev Ops</p>
-                </div>
-              </div>
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/vs.png" alt="Visual Studio Icon" />
-                  <p>Visual Studio</p>
-                </div>
-              </div>
-              <div className="icon-container">
-                <div className="column">
-                  <img src="/images/swagger.png" alt="Swagger Icon" />
-                  <p>Swagger</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="skills-grid">
+          {skillsData.map((group) => (
+            <SkillCategory
+              key={group.category}
+              category={group.category}
+              items={group.items}
+            />
+          ))}
         </div>
       </section>
 
       <section id="education" className="content-section">
         <div className="header-container">
           <div className="section-header">
-            <div className="header-background-blue">
+            <div className="header-background-orange">
               <FaGraduationCap className="icon" />
               <h2>Education</h2>
             </div>
           </div>
           <div className="education-details">
-            <h3>Robert Morris University, Coraopolis, PA</h3>
-            <p className="degree-info">
-              Currently pursuing a Bachelor of Science in Software Engineering
-              with a minor in Mechatronics.
-            </p>
-            <p className="graduation-info">
-              <strong>Graduation Date:</strong> May 2024
-            </p>
-            <p className="gpa-info">
-              <strong>GPA:</strong> 3.75
-            </p>
-            <br />
-            <h3>South Park High School, South Park, PA</h3>
-            <p className="graduation-info">
-              <strong>Graduation Date:</strong> May 2020
-            </p>
-            <p className="gpa-info">
-              <strong>GPA:</strong> 3.61
-            </p>
+            <div className="education-school">
+              <h3>Robert Morris University, Coraopolis, PA</h3>
+              <p className="degree-info">
+                Bachelor of Science in Software Engineering with a minor in
+                Mechatronics.
+              </p>
+              <p className="graduation-info">
+                <strong>Graduation Date:</strong> May 2024
+              </p>
+              <p className="gpa-info">
+                <strong>GPA:</strong> 3.75
+              </p>
+            </div>
+            <div className="education-school">
+              <h3>South Park High School, South Park, PA</h3>
+              <p className="graduation-info">
+                <strong>Graduation Date:</strong> May 2020
+              </p>
+            </div>
           </div>
         </div>
       </section>
