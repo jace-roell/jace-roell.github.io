@@ -75,11 +75,9 @@ code {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse 85% 75% at 50% 45%,
-    transparent 35%,
-    rgba(27, 54, 93, 0.14) 100%
-  );
+  background: radial-gradient(ellipse 85% 75% at 50% 45%,
+      transparent 35%,
+      rgba(27, 54, 93, 0.14) 100%);
   mix-blend-mode: multiply;
 }
 
@@ -87,13 +85,11 @@ code {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(230, 96, 51, 0.04) 0%,
-    transparent 30%,
-    transparent 70%,
-    rgba(27, 54, 93, 0.05) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(230, 96, 51, 0.04) 0%,
+      transparent 30%,
+      transparent 70%,
+      rgba(27, 54, 93, 0.05) 100%);
   mix-blend-mode: soft-light;
 }
 
